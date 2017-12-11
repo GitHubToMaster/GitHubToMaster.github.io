@@ -1,0 +1,1091 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    
+
+    <title>[Java]-7 | 未来的小幸运 || 致正在努力的我们--------逸如风</title>
+    <meta name="author" content="逸如风">
+    
+    <meta name="description" content="吴晓文的个人博客">
+    
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta property="og:title" content="[Java]-7"/>
+    <meta property="og:site_name" content="未来的小幸运 || 致正在努力的我们--------逸如风"/>
+
+    
+    <meta property="og:image" content=""/>
+    
+
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="alternate" href="/atom.xml" title="未来的小幸运 || 致正在努力的我们--------逸如风" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/lib/materialize.min.css">
+    <link rel="stylesheet" href="/css/lib/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+
+    
+        <link rel="stylesheet" href="/css/lib/Tranquil Heart.css" type="text/css">
+    
+    <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+
+
+<body>
+    <img src="/weixin_favicon.png" style="position: absolute; left: -9999px; opacity: 0; filter: alpha(opacity=0);">
+
+    <nav class="indigo">
+    <div class="nav-wrapper">
+        <a href="#" data-activates="main-menu" class="button-collapse">
+            <i class="fa fa-navicon"></i>
+        </a>
+        <div class="">
+            <a href="/" class="brand-logo hide-on-med-and-down">未来的小幸运 || 致正在努力的我们--------逸如风</a>
+            <ul class="right hide-on-med-and-down">
+                
+                    <li>
+                        <a class="menu-home " href="/" >
+                            <i class="fa fa-home "></i>
+                            
+                            首页
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-archive " href="/archives" >
+                            <i class="fa fa-archive "></i>
+                            
+                            归档
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-category category-menu" href="javascript:;" data-activates="category-menu" >
+                            <i class="fa fa-bookmark "></i>
+                            
+                            分类
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-reading " href="/reading" >
+                            <i class="fa fa-book "></i>
+                            
+                            读书
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-about " href="/about" >
+                            <i class="fa fa-user "></i>
+                            
+                            关于
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-search modal-trigger " href="#search" >
+                            <i class="fa fa-search "></i>
+                            
+                            搜索
+                        </a>
+                    </li>
+                
+            </ul>
+            <div>
+    <ul class="side-nav indigo darken-1" id="main-menu">
+        
+        <li class="side-user">
+            <div class="row">
+                <div class="col s4 no-padding">
+                    <img class="avatar-image circle responsive-img" src="http://on3w7gc9m.bkt.clouddn.com/touxiang.png" alt="User Avatar">
+                </div>
+                <div class="info col s8 valign-wrapper no-padding">
+                    <div class="valign">
+                        <p class="name">逸如风</p>
+                        <p class="desc">待进化的Geek一枚</p>
+                    </div>
+                </div>
+            </div>
+        </li>
+        
+
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-home " href="/" >
+                    <i class="fa fa-home "></i>
+                    
+                    首页
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-archive " href="/archives" >
+                    <i class="fa fa-archive "></i>
+                    
+                    归档
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-category category-menu" href="javascript:;" data-activates="category-menu" >
+                    <i class="fa fa-bookmark "></i>
+                    
+                    分类
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-reading " href="/reading" >
+                    <i class="fa fa-book "></i>
+                    
+                    读书
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-about " href="/about" >
+                    <i class="fa fa-user "></i>
+                    
+                    关于
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-search modal-trigger " href="#search" >
+                    <i class="fa fa-search "></i>
+                    
+                    搜索
+                </a>
+            </li>
+        
+    </ul>
+
+    <ul class="side-nav indigo darken-1" id="category-menu">
+    
+
+            
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Algorithm/">
+                    Algorithm <span class="right">3 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/Algorithm/BubbleSort/">
+                    BubbleSort <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/Algorithm/策略/">
+                    策略 <span class="right">2 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Android/">
+                    Android <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Java/">
+                    Java <span class="right">26 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/Java/基础/">
+                    基础 <span class="right">10 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/Java/Swing/">
+                    Swing <span class="right">2 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/Java/Util基本类的使用/">
+                    Util基本类的使用 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/Java/Internationalization/">
+                    Internationalization <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/Java/数组/">
+                    数组 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/Java/socket/">
+                    socket <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/Java/XML/">
+                    XML <span class="right">2 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/Java/Class/">
+                    Class <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/Java/Security/">
+                    Security <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/Java/File/">
+                    File <span class="right">2 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/Java/泛型/">
+                    泛型 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/Java/jsp/">
+                    jsp <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/Java/线程/">
+                    线程 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/常用命令/">
+                    常用命令 <span class="right">3 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/框架/">
+                    框架 <span class="right">10 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/框架/Hibernate/">
+                    Hibernate <span class="right">3 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/框架/MyBatis/">
+                    MyBatis <span class="right">3 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/框架/Spring/">
+                    Spring <span class="right">2 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/框架/Mybatis/">
+                    Mybatis <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/框架/整合/">
+                    整合 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Tools/">
+                    Tools <span class="right">2 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/GitHub/">
+                    GitHub <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/GitHub/Linux/">
+                    Linux <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/MySQL/">
+                    MySQL <span class="right">2 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/MySQL/SQL/">
+                    SQL <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/MySQL/正则表达式/">
+                    正则表达式 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/jQuery/">
+                    jQuery <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/jQuery/事件/">
+                    事件 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/JavaScript/">
+                    JavaScript <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Python/">
+                    Python <span class="right">3 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/Python/pydoc/">
+                    pydoc <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/Python/Basic/">
+                    Basic <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/Python/基础/">
+                    基础 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/json/">
+                    json <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/json/级联/">
+                    级联 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/HTML-CSS/">
+                    HTML-CSS <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/HTML-CSS/优化/">
+                    优化 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/计算机基本知识/">
+                    计算机基本知识 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/微信/">
+                    微信 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/微信/开发/">
+                    开发 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/开源软件/">
+                    开源软件 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/开源软件/Druid/">
+                    Druid <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/MySql/">
+                    MySql <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/MySql/8小时/">
+                    8小时 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+    </ul>
+</div>
+
+        </div>
+    </div>
+</nav>
+
+<div id="search" class="modal search-modal">
+    <div class="row">
+        <div class="input-field col s12">
+              <input id="search-input" type="text">
+              <label for="search-input">搜索</label>
+        </div>
+
+    </div>
+    <div id="search-result" class="search-result col s12">
+
+    </div>
+</div>
+
+
+    <main>
+        <div class="container main-container">
+    <nav class="page-nav hide-on-small-only">
+    <div class="nav-wrapper indigo">
+        <span class="breadcrumb">当前位置（分类目录）</span>
+        
+            
+    
+    
+    <a class="breadcrumb" href="/categories/Java/">Java</a><a class="breadcrumb" href="/categories/Java/基础/">基础</a>
+
+
+        
+
+        
+    </div>
+</nav>
+
+<article>
+    <div class="card">
+        <div class="card-content">
+            
+
+            <div class="article-title">
+                
+    
+        <h1>[Java]-7</h1>
+    
+
+
+            </div>
+            <time class="pink-link-context" datetime="2016-12-30T02:55:06.000Z"><a href="/2016/12/30/Java-7/">2016-12-30</a></time>
+
+            <span id="busuanzi_container_page_pv" class="read-times-container">
+    <i class="fa fa-eye"></i>
+    <span id="busuanzi_value_page_pv"></span>
+</span>
+
+            
+
+            <div class="toc pink-link-context hide-on-med-and-down">
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#Java中类与类之间的转换"><span class="section table-of-contents-text"><a href="#Java&#x4E2D;&#x7C7B;&#x4E0E;&#x7C7B;&#x4E4B;&#x95F4;&#x7684;&#x8F6C;&#x6362;" class="headerlink" title="Java&#x4E2D;&#x7C7B;&#x4E0E;&#x7C7B;&#x4E4B;&#x95F4;&#x7684;&#x8F6C;&#x6362;"></a>Java&#x4E2D;&#x7C7B;&#x4E0E;&#x7C7B;&#x4E4B;&#x95F4;&#x7684;&#x8F6C;&#x6362;</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#包装类之间的转换"><span class="section table-of-contents-text"><a href="#&#x5305;&#x88C5;&#x7C7B;&#x4E4B;&#x95F4;&#x7684;&#x8F6C;&#x6362;" class="headerlink" title="&#x5305;&#x88C5;&#x7C7B;&#x4E4B;&#x95F4;&#x7684;&#x8F6C;&#x6362;"></a>&#x5305;&#x88C5;&#x7C7B;&#x4E4B;&#x95F4;&#x7684;&#x8F6C;&#x6362;</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#String类详解"><span class="section table-of-contents-text"><a href="#String&#x7C7B;&#x8BE6;&#x89E3;" class="headerlink" title="String&#x7C7B;&#x8BE6;&#x89E3;"></a>String&#x7C7B;&#x8BE6;&#x89E3;</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#创建的两种形式"><span class="section table-of-contents-text"><a href="#&#x521B;&#x5EFA;&#x7684;&#x4E24;&#x79CD;&#x5F62;&#x5F0F;" class="headerlink" title="&#x521B;&#x5EFA;&#x7684;&#x4E24;&#x79CD;&#x5F62;&#x5F0F;"></a>&#x521B;&#x5EFA;&#x7684;&#x4E24;&#x79CD;&#x5F62;&#x5F0F;</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#区别"><span class="section table-of-contents-text"><a href="#&#x533A;&#x522B;" class="headerlink" title="&#x533A;&#x522B;"></a>&#x533A;&#x522B;</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#常用方法"><span class="section table-of-contents-text"><a href="#&#x5E38;&#x7528;&#x65B9;&#x6CD5;" class="headerlink" title="&#x5E38;&#x7528;&#x65B9;&#x6CD5;"></a>&#x5E38;&#x7528;&#x65B9;&#x6CD5;</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#使用注意事项"><span class="section table-of-contents-text"><a href="#&#x4F7F;&#x7528;&#x6CE8;&#x610F;&#x4E8B;&#x9879;" class="headerlink" title="&#x4F7F;&#x7528;&#x6CE8;&#x610F;&#x4E8B;&#x9879;"></a>&#x4F7F;&#x7528;&#x6CE8;&#x610F;&#x4E8B;&#x9879;</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#trim方法"><span class="section table-of-contents-text"><a href="#trim&#x65B9;&#x6CD5;" class="headerlink" title="trim&#x65B9;&#x6CD5;"></a>trim&#x65B9;&#x6CD5;</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#contact方法：拼接字符串"><span class="section table-of-contents-text"><a href="#contact&#x65B9;&#x6CD5;&#xFF1A;&#x62FC;&#x63A5;&#x5B57;&#x7B26;&#x4E32;" class="headerlink" title="contact&#x65B9;&#x6CD5;&#xFF1A;&#x62FC;&#x63A5;&#x5B57;&#x7B26;&#x4E32;"></a>contact&#x65B9;&#x6CD5;&#xFF1A;&#x62FC;&#x63A5;&#x5B57;&#x7B26;&#x4E32;</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#String与基本数据类型之间的转换"><span class="section table-of-contents-text"><a href="#String&#x4E0E;&#x57FA;&#x672C;&#x6570;&#x636E;&#x7C7B;&#x578B;&#x4E4B;&#x95F4;&#x7684;&#x8F6C;&#x6362;" class="headerlink" title="String&#x4E0E;&#x57FA;&#x672C;&#x6570;&#x636E;&#x7C7B;&#x578B;&#x4E4B;&#x95F4;&#x7684;&#x8F6C;&#x6362;"></a>String&#x4E0E;&#x57FA;&#x672C;&#x6570;&#x636E;&#x7C7B;&#x578B;&#x4E4B;&#x95F4;&#x7684;&#x8F6C;&#x6362;</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#String与int-类型之间的转换"><span class="section table-of-contents-text"><a href="#String&#x4E0E;int-&#x7C7B;&#x578B;&#x4E4B;&#x95F4;&#x7684;&#x8F6C;&#x6362;" class="headerlink" title="String&#x4E0E;int &#x7C7B;&#x578B;&#x4E4B;&#x95F4;&#x7684;&#x8F6C;&#x6362;"></a>String&#x4E0E;int &#x7C7B;&#x578B;&#x4E4B;&#x95F4;&#x7684;&#x8F6C;&#x6362;</span></a></li></ol></li></ol>
+</div>
+
+
+            <div class="entry pink-link-context">
+                <h2 id="Java中类与类之间的转换"><a href="#Java中类与类之间的转换" class="headerlink" title="Java中类与类之间的转换"></a>Java中类与类之间的转换</h2><blockquote>
+<p><strong>类与类之间的转换如果要强转，则必须要有继承关系</strong>。否则，编译器会报出，ClassCastException异常</p>
+</blockquote>
+<h3 id="包装类之间的转换"><a href="#包装类之间的转换" class="headerlink" title="包装类之间的转换"></a>包装类之间的转换</h3><blockquote>
+<p>思路是：将包装类进行拆箱，转换成基础数据类型之后，再进行转换，最后进行装箱</p>
+</blockquote>
+<p>例如：Integer与Double的转换</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		Integer a = <span class="number">10</span>;</span><br><span class="line">		<span class="keyword">int</span> b = a;</span><br><span class="line">		<span class="keyword">double</span> m = b;</span><br><span class="line">		Double c = m;</span><br><span class="line">		System.out.println(c);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<hr>
+<h2 id="String类详解"><a href="#String类详解" class="headerlink" title="String类详解"></a>String类详解</h2><blockquote>
+<ol>
+<li>String类也是Java中的lang包中的一个类，众所周知，lang包中的所有类都不需要导入就可以使用，<strong>String类与System,Scanner类一样，都是Java中的一个预定义类型，而且String类是一个引用类型，任何Java类型都可以将变量表示为引用类型。使用引用类型声明的变量都是引用变量，引用在一个对象里。</strong></li>
+<li>String 类中 hashcode根据内容而生成（<strong>生成方式不同，即使生成内容相同，也不能说地址相同）</strong></li>
+<li>字节是计算机存储信息的基本单位，1 个字节等于 8 位， gbk 编码中 1 个汉字字符存储需要 2 个字节，1 个英文字符存储需要 1 个字节。所以我们看到上面的程序运行结果中，每个汉字对应两个字节值，如“学”对应 “-47 -89” ，而英文字母 “J” 对应 “74” 。同时，我们还发现汉字对应的字节值为负数，原因在于每个字节是 8 位，最大值不能超过 127，而汉字转换为字节后超过127，如果超过就会溢出，以负数的形式显示。</li>
+</ol>
+</blockquote>
+<p>例如 ： 代码如下</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		Object object = <span class="keyword">new</span> Object();</span><br><span class="line">		System.out.println(object.hashCode());</span><br><span class="line">		Integer integer = <span class="keyword">new</span> Integer(<span class="number">7051261</span>);</span><br><span class="line">		System.out.println(integer.hashCode());</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="创建的两种形式"><a href="#创建的两种形式" class="headerlink" title="创建的两种形式"></a>创建的两种形式</h3><ol>
+<li>常量池中创建（内容唯一，不允许重复出现，在编译的时候就可以确定）</li>
+<li>堆中创建（在JVM中只存在一个堆，但是在运行时才可以确定）<br><strong>在堆中创建的时候，一般做两件事：第一，检查常量池是否存在与其相同的。第二，如果有则直接复制过来，如果没有，在堆中新建，并且保存常量池</strong></li>
+</ol>
+<blockquote>
+<ol>
+<li>从大体上来讲，Java中的内存分为 常量池，堆，以及栈（存放引用，也就是我们常说的遥控器，花名册），关于进一步内存详解，<a href="http://www.cnblogs.com/xiohao/p/4296088.html" target="_blank" rel="noopener">请移步</a></li>
+<li>一旦一个字符串在内存中创建，则这个字符串将不可改变。如果需要一个可以改变的字符串，我们可以使用StringBuffer或者StringBuilder（后面章节中会讲到）。</li>
+</ol>
+</blockquote>
+<h3 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h3><blockquote>
+<ol>
+<li><strong>常量池中创建的 String 对象创建后则不能被修改，是不可变的，所谓的修改其实是创建了新的副本，则会在常量池中产生一个副本，所指向的内存空间不同</strong></li>
+<li>另外需要注意的是 ： String类中重写了equals方法，比较的是内容是否相同，而 == 判断的是地址是否相同，也就是哈希码是否相同</li>
+<li>常量在编译中就可以确定，但是变量在运行时才可以确定</li>
+</ol>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="comment">/*编译时就已经创建，并且放在常量池中*/</span></span><br><span class="line">		String str = <span class="string">"hello"</span>;</span><br><span class="line"></span><br><span class="line">		<span class="comment">/*执行时才会确定，因此放到堆中*/</span></span><br><span class="line">		String str2 = <span class="keyword">new</span> String(<span class="string">"hello"</span>);</span><br><span class="line">		String s = <span class="string">"a"</span> + <span class="string">"bc"</span>;<span class="comment">/* 等同于 String s = "abc";  //编译的时候这里会进行优化 s = abc*/</span></span><br><span class="line">		String s4 = s + str ;<span class="comment">/*运行时确定的值放堆中 */</span></span><br><span class="line"></span><br><span class="line">		System.out.println(str == str2);       <span class="comment">/*false*/</span></span><br><span class="line">		System.out.println(str.equals(str2));  <span class="comment">/*true*/</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="常用方法"><a href="#常用方法" class="headerlink" title="常用方法"></a>常用方法</h3><p><img src="http://img.mukewang.com/53d9f7d200010bb007780366.jpg" alt="字符串中的方法"></p>
+<h3 id="使用注意事项"><a href="#使用注意事项" class="headerlink" title="使用注意事项"></a>使用注意事项</h3><ol>
+<li>使用方法并没有赋值，因此结果仍然不变</li>
+<li>使用charAt 方法的时候不要越界</li>
+<li>使用 indexOf 进行字符或字符串查找时，如果匹配返回位置索引；如果没有匹配结果，返回 -1</li>
+<li>使用 substring(beginIndex , endIndex) 进行字符串截取时，包括 beginIndex 位置的字符，不包括 endIndex 位置的字符，因此如果只是截取之后的字符，直接使用 subString(int beginIndex)</li>
+<li><strong>数组中，length是属性，而String类中，length()是方法，</strong></li>
+<li>intern() 方法是将字符串对象放入到常量池中，如果已经存在，则返回池中的字符串。</li>
+<li>String类中的trim()方法去除的是前后两端的空白字符，包括字符’ ‘,’\t’,’\r’,’\n’</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		String s = <span class="string">"a"</span>;</span><br><span class="line">		s = s.concat(<span class="string">"bc"</span>);</span><br><span class="line">		System.out.println(s.equals(<span class="string">"abc"</span>));</span><br><span class="line">		String s2 = <span class="string">"abc"</span>;</span><br><span class="line">		System.out.println(s==s2);</span><br><span class="line"></span><br><span class="line">		System.out.println(s2.startsWith(<span class="string">"ab"</span>));<span class="comment">/*是否以小写ab开头*/</span></span><br><span class="line">		System.out.println(<span class="string">"ABC"</span>.equals(s2));</span><br><span class="line">		System.out.println(<span class="string">"ABC"</span>.equalsIgnoreCase(s2));<span class="comment">/*忽略大小写，看是否匹配，具体查看API*/</span></span><br><span class="line"></span><br><span class="line">		String s11 = <span class="string">"hello"</span>;</span><br><span class="line">		String s12 = s11.concat(<span class="string">" world"</span>);</span><br><span class="line">		System.out.println(s11);<span class="comment">/*hello*/</span></span><br><span class="line">		System.out.println(s12);<span class="comment">/*hello world*/</span></span><br><span class="line">		String s13 = <span class="keyword">new</span> String(<span class="string">"indei"</span>);</span><br><span class="line">		s13.intern();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>这里讲述了转义符，以及replaceAll方法的使用，”.” 号作为通配符，指的是所有的</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test11</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		String s = <span class="string">"http://www.baidu.com"</span>;</span><br><span class="line">		String s1 = s;</span><br><span class="line">		s = s.replaceAll(<span class="string">"\\."</span>, <span class="string">" "</span>);		</span><br><span class="line">		<span class="comment">/*这里使用双\转义，使用两个\，首先对一个\进行转译，然后只有一个\.  再通过\对点号进行转义*/</span></span><br><span class="line"></span><br><span class="line">		System.out.println(s);	<span class="comment">/*http://www baidu com*/</span></span><br><span class="line">		System.out.println(s1); <span class="comment">/*http://www.baidu.com*/</span></span><br><span class="line"></span><br><span class="line">		s1 = s1.replace(<span class="string">"."</span>, <span class="string">""</span>);</span><br><span class="line">		System.out.println();   <span class="comment">/*输出为空*/</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="trim方法"><a href="#trim方法" class="headerlink" title="trim方法"></a>trim方法</h3><p>使用trim 方法需要注意，只能去掉首尾两个地方的空格，不可以去掉其他地方的空格</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		String  s = <span class="string">"  hello world!  "</span>;</span><br><span class="line"></span><br><span class="line">		System.out.println(s.trim());</span><br><span class="line">		<span class="comment">/*hello world!*/</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="contact方法：拼接字符串"><a href="#contact方法：拼接字符串" class="headerlink" title="contact方法：拼接字符串"></a>contact方法：拼接字符串</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test16</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		String s = <span class="string">"abc"</span>;</span><br><span class="line">		s = s + <span class="string">"de"</span>;</span><br><span class="line">		s = s + <span class="string">"fg"</span>;</span><br><span class="line">		System.out.println(s);</span><br><span class="line">		StringBuffer sb = <span class="keyword">new</span> StringBuffer(<span class="string">"abc"</span>);</span><br><span class="line">		sb.append(<span class="string">"de"</span>);</span><br><span class="line">		System.out.println(sb);</span><br><span class="line"></span><br><span class="line">		String s2 = sb.toString();</span><br><span class="line">		System.out.println(s2);</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>从代码中我们可以看到，当频繁操作字符串时，就会额外产生很多临时变量。<strong>容易产生很多垃圾内存</strong>。使用 StringBuilder 或 StringBuffer 就可以避免这个问题。至于 StringBuilder 和StringBuffer ，它们基本相似，不同之处，<strong>StringBuffer 是线程安全的，而 StringBuilder 则没有实现线程安全功能，所以性能略高</strong>。因此一般情况下，<strong>如果需要创建一个内容可变的字符串对象，应优先考虑使用 StringBuilder 类。</strong></p>
+<hr>
+<p>练习一：</p>
+<blockquote>
+<p>判断邮件格式以及Java源代码文件名是否合法</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloWorld</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">	        <span class="comment">/*Java文件名*/</span></span><br><span class="line">			String fileName = <span class="string">"HelloWorld.java"</span>;</span><br><span class="line">		    <span class="comment">/* 邮箱*/</span></span><br><span class="line">			String email = <span class="string">"laurenyang@imooc.com"</span>;</span><br><span class="line"></span><br><span class="line">			<span class="comment">/* 判断.java文件名是否正确：合法的文件名应该以.java结尾*/</span></span><br><span class="line">		    <span class="comment">/*</span></span><br><span class="line"><span class="comment">		    参考步骤：</span></span><br><span class="line"><span class="comment">		    1、获取文件名中最后一次出现"."号的位置</span></span><br><span class="line"><span class="comment">		    2、根据"."号的位置，获取文件的后缀</span></span><br><span class="line"><span class="comment">		    3、判断"."号位置及文件后缀名</span></span><br><span class="line"><span class="comment">		    */</span></span><br><span class="line">		    <span class="comment">/*获取文件名中最后一次出现"."号的位置*/</span></span><br><span class="line">			<span class="keyword">int</span> index = fileName.lastIndexOf(<span class="string">'.'</span>);</span><br><span class="line"></span><br><span class="line">		    <span class="comment">/* 获取文件的后缀*/</span></span><br><span class="line">			String prefix = fileName.substring(index + <span class="number">1</span>, fileName.length());</span><br><span class="line">		    System.out.println(prefix.equals(<span class="string">"java"</span>));</span><br><span class="line">			<span class="comment">/* 判断必须包含"."号，且不能出现在首位，同时后缀名为"java"*/</span></span><br><span class="line">			<span class="keyword">if</span> (    index != -<span class="number">1</span> &amp;&amp; index != <span class="number">0</span> &amp;&amp;     prefix.equals(<span class="string">"java"</span>)  ) &#123;</span><br><span class="line">				System.out.println(<span class="string">"Java文件名正确"</span>);</span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				System.out.println(<span class="string">"Java文件名无效"</span>);</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">		    <span class="comment">/* 判断邮箱格式是否正确：合法的邮箱名中至少要包含"@", 并且"@"是在"."之前*/</span></span><br><span class="line">		     <span class="comment">/*</span></span><br><span class="line"><span class="comment">		    参考步骤：</span></span><br><span class="line"><span class="comment">		    1、获取文件名中"@"符号的位置</span></span><br><span class="line"><span class="comment">		    2、获取邮箱中"."号的位置</span></span><br><span class="line"><span class="comment">		    3、判断必须包含"@"符号，且"@"必须在"."之前</span></span><br><span class="line"><span class="comment">		    */</span></span><br><span class="line">		    <span class="comment">/* 获取邮箱中"@"符号的位置*/</span></span><br><span class="line">				<span class="keyword">int</span> index2 = email.indexOf(<span class="string">'@'</span>);</span><br><span class="line"></span><br><span class="line">		    <span class="comment">/* 获取邮箱中"."号的位置*/</span></span><br><span class="line">			<span class="keyword">int</span> index3 = email.indexOf(<span class="string">'.'</span>);</span><br><span class="line"></span><br><span class="line">			<span class="comment">/*判断必须包含"@"符号，且"@"必须在"."之前*/</span></span><br><span class="line">			<span class="keyword">if</span> (index2 != -<span class="number">1</span> &amp;&amp; index3 &gt; index2) &#123;</span><br><span class="line">				System.out.println(<span class="string">"邮箱格式正确"</span>);</span><br><span class="line">			&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">				System.out.println(<span class="string">"邮箱格式无效"</span>);</span><br><span class="line">			&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>练习二：</p>
+<blockquote>
+<p>生成随机验证码</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Prac</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line"></span><br><span class="line">		<span class="comment">/*方法一：自己写*/</span></span><br><span class="line">		String s1 = <span class="string">"abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i++)</span><br><span class="line">		&#123;</span><br><span class="line">			System.out.print(s1.charAt((<span class="keyword">int</span>)(Math.random() * <span class="number">63</span> )));</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="comment">/*方法二：推荐使用的方法*/</span></span><br><span class="line">		String s = <span class="string">"abcdefghijklmnopqrstuvwxyz"</span>;</span><br><span class="line">		Random random = <span class="keyword">new</span> Random();</span><br><span class="line">		<span class="keyword">char</span>[] chs = <span class="keyword">new</span> <span class="keyword">char</span>[<span class="number">4</span>];</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i++) &#123;</span><br><span class="line">			<span class="keyword">char</span> ch = s.charAt(random.nextInt(<span class="number">26</span>));</span><br><span class="line">			chs[i] = ch;</span><br><span class="line">		&#125;</span><br><span class="line">		String code = <span class="keyword">new</span> String(chs);</span><br><span class="line">		System.out.println(code);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意：方法二将验证码保存了，方法与用户输入进行比对，然而方法一只是完成了生成验证码的任务，没有按照用户体验考虑</p>
+<h2 id="String与基本数据类型之间的转换"><a href="#String与基本数据类型之间的转换" class="headerlink" title="String与基本数据类型之间的转换"></a>String与基本数据类型之间的转换</h2><h3 id="String与int-类型之间的转换"><a href="#String与int-类型之间的转换" class="headerlink" title="String与int 类型之间的转换"></a>String与int 类型之间的转换</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">		System.out.println(<span class="string">'a'</span> + <span class="string">'b'</span>);<span class="comment">/*这里返回的是a与b的Ascii码的和*/</span></span><br><span class="line">		<span class="comment">/*整数转字符串*/</span></span><br><span class="line">		<span class="comment">/*方法一*/</span></span><br><span class="line">		<span class="keyword">int</span> a = <span class="number">10</span>;</span><br><span class="line">		String s = a + <span class="string">""</span>;</span><br><span class="line">		</span><br><span class="line">		<span class="comment">/*方法二*/</span></span><br><span class="line">		Integer i = a;</span><br><span class="line">		String s1 = i.toString();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">		<span class="comment">/*字符串转整数*/</span></span><br><span class="line">		<span class="keyword">int</span> a1 = Integer.parseInt(s);</span><br><span class="line">		System.out.println(a1);</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+                
+<p class="pink-link-context">
+    <a href="/2017/01/02/Java-8/" rel="next" title="[Java]-8">
+    上一篇：[Java]-8
+  </a>
+</p>
+
+
+
+<p class="pink-link-context">
+    <a href="/2016/12/25/Windows常用命令/" rel="next" title="Windows常用命令">
+    下一篇：Windows常用命令
+  </a>
+</p>
+
+
+            </div>
+			
+        </div>
+    </div>
+</article>
+
+
+
+
+    <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href,
+        sourceId: "",
+        productKey: "128846229ecc425f8450fc6fdc0151c8",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
+
+
+
+</div>
+
+        <div class="fixed-action-btn float-sitemap">
+    <a class="btn-floating btn-large pink">
+      <i class="fa fa-caret-square-o-up"></i>
+    </a>
+    <ul>
+      <li><a class="btn-return-top btn-floating waves-effect green" title="回到顶部"><i class="fa fa-arrow-circle-o-up"></i></a></li>
+      <li><a class="btn-floating waves-effect button-collapse yellow darken-1"  data-activates="main-menu" title="菜单"><i class="fa fa-navicon"></i></a></li>
+    </ul>
+  </div>
+
+    </main>
+    <footer class="page-footer indigo darken-1">
+    
+    <div class="footer-container container">
+        <div class="row">
+            
+            <div class="social-group col m4 s12">
+                <h5 class="white-text">社交</h5>
+                
+                    <a class="social-link" href="https://www.linkedin.com/in/%E6%99%93%E6%96%87-%E5%90%B4-79057a121/" target="_blank">
+                        <i class="fa fa-2x fa-linkedin"></i>
+                    </a>
+                
+                    <a class="social-link" href="http://weibo.com/Msingwen0222/home?wvr=5" target="_blank">
+                        <i class="fa fa-2x fa-weibo"></i>
+                    </a>
+                
+                    <a class="social-link" href="https://github.com/sivanWu0222" target="_blank">
+                        <i class="fa fa-2x fa-github"></i>
+                    </a>
+                
+                    <a class="social-link" href="http://wpa.qq.com/msgrd?v=3&amp;uin=1666762170&amp;site=qq&amp;menu=yes" target="_blank">
+                        <i class="fa fa-2x fa-qq"></i>
+                    </a>
+                
+                    <a class="social-link" href="https://zh-cn.facebook.com/people/SiVan-Wu/100014408918389" target="_blank">
+                        <i class="fa fa-2x fa-facebook"></i>
+                    </a>
+                
+                    <a class="social-link" href="https://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&amp;email=xfTz8-Py8-f08vWFtLTrpqqo" target="_blank">
+                        <i class="fa fa-2x fa-envelope"></i>
+                    </a>
+                
+                    <a class="social-link" href="https://twitter.com/SiVan_Wu" target="_blank">
+                        <i class="fa fa-2x fa-twitter"></i>
+                    </a>
+                
+                    <a class="social-link" href="/atom.xml" target="_blank">
+                        <i class="fa fa-2x fa-rss"></i>
+                    </a>
+                
+
+                
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+    </script>
+    <div class="site-visitors-container white-text">
+        <span>
+            <i class="fa fa-user"></i>
+            <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+        </span>
+        <span>&nbsp;|&nbsp;</span>
+        <span>
+            <i class="fa fa-eye"></i>
+            <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+        </span>
+    </div>
+
+
+            </div>
+            
+
+            
+            <div class="col m8 s12">
+                <h5 class="white-text">友情链接</h5>
+
+                
+                    <a class="social-link" href="http://www.ai-start.com/" target="_blank">AI翻译笔记</a>
+                
+                    <a class="social-link" href="http://www.grace527.com" target="_blank">吴其顺</a>
+                
+                    <a class="social-link" href="http://www.xiaqianan.top/" target="_blank">刘霈</a>
+                
+                    <a class="social-link" href="http://www.rxdonny.com" target="_blank">唐仁鑫</a>
+                
+                    <a class="social-link" href="https://www.byvoid.com/" target="_blank">byvoid</a>
+                
+                    <a class="social-link" href="http://blog.csdn.net/Bryan__" target="_blank">Bryan__</a>
+                
+                    <a class="social-link" href="http://blog.csdn.net/a819825294" target="_blank">雪伦</a>
+                
+                    <a class="social-link" href="http://blog.csdn.net/v_JULY_v" target="_blank">JULY大神</a>
+                
+                    <a class="social-link" href="http://miccall.tech/" target="_blank">王金铮</a>
+                
+                    <a class="social-link" href="http://wxz.name" target="_blank">汪小祯</a>
+                
+                    <a class="social-link" href="http://www.zengheng.top" target="_blank">曾恒</a>
+                
+                    <a class="social-link" href="http://gunpowder.net.cn" target="_blank">曹巍</a>
+                
+                    <a class="social-link" href="http://hikerell.cn/" target="_blank">hiker</a>
+                
+            </div>
+            
+        </div>
+    </div>
+    
+
+    <div class="footer-copyright pink-link-context">
+        <div class="container">
+            <a href="http://www.sivan0222.cn">Copyright ©  2016 - 2017 sivan All rights reserved.</a>
+            <p class="right" style="margin-top: 0;"> <a href="http://www.miitbeian.gov.cn/publish/query/indexFirst.action">湘ICP备16017041号</a></p>
+        </div>
+    </div>
+</footer>
+
+
+    <noscript>
+    <div class="noscript">
+        <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
+    </div>
+</noscript>
+<div class="noscript">
+    <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
+</div>
+
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/materialize.min.js"></script>
+
+<script>
+    (function($) {
+        $(document).ready(function() {
+            // 隐藏禁用javascript（针对微信内置浏览器）的提示
+            $('.noscript').hide();
+
+            // 图片缩放效果
+            var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image').not('.qrcode');
+
+            // 给图片加上点击放大效果（materialbox插件）
+            $imgs.addClass('materialboxed').each(function(i, el) {
+                $(this).attr('data-caption', $(this).attr('alt') || ' ');
+            }).materialbox();
+
+            // 优化表格的显示
+            $('table').each(function() {
+                var $table = $(this);
+                // 除去多行代码的情况
+                if ($table.find('pre').length == 0) {
+                    $table.addClass('responsive-table striped bordered');
+                }
+            });
+
+            // 首页幻灯片
+            $('.slider').slider({indicators: true, full_width: true, interval: 8000});
+
+            $(".button-collapse").sideNav();
+            $(".category-menu").sideNav();
+
+            // 针对gallery post
+            $('.carousel').carousel({full_width: true});
+            $('.carousel-control.prev').click(function() {
+                $('.carousel').carousel('prev');
+            });
+            $('.carousel-control.next').click(function() {
+                $('.carousel').carousel('next');
+            });
+
+            // 文章目录
+            $('article').not('.simple-article').find('h1').add('h2').add('h3').add('h4').add('h5').add('h6').scrollSpy();
+
+            // 目录随屏幕滚动（防止目录过长越过footer）
+            var $toc = $('.toc');
+            var scrollTargetTop = 0;
+            $(window).scroll(function() {
+                var $activeLink = $toc.find('a.active.section');
+                if ($(window).scrollTop() < 100) {
+                    scrollTargetTop = 0;
+                } else {
+                    if ($activeLink[0]) {
+                        scrollTargetTop = $activeLink.offset().top - $toc.offset().top;
+                    }
+                }
+                $toc.css('top', '-' + scrollTargetTop + 'px');
+            });
+
+            // 修正文章目录的left-border颜色
+            var color = $('.table-of-contents-text').css('color');
+            $('.table-of-contents-link').css('border-left-color', color);
+
+            // 针对移动端做的优化：FAB按钮点击一下收回
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                $('.fixed-action-btn').addClass('click-to-toggle');
+            }
+            // 回到顶部
+            $('.btn-return-top').click(function() {
+                $('body, html').animate({
+                    scrollTop: 0
+                }, 500);
+            });
+
+            // 重置读书页面的Tab标签页的颜色
+            $('li.tab a').hover(function() {
+                $(this).toggleClass('text-lighten-4');
+            });
+            $('.indicator').addClass('pink lighten-2');
+
+            
+            // 添加new标签
+            $('.menu-reading, .menu-about').append('<span class="new badge pink"></span>');
+            
+
+            // 搜索功能
+            $('.modal-trigger').leanModal({
+                // 打开搜索框时自动聚焦
+                ready: function() {
+                    if ($('#search').is(":visible")) {
+                        $('#search-input').focus();
+                    }
+                }
+            });
+            var searchXml = "";
+            if (searchXml.length == 0) {
+             	searchXml = "search.xml";
+            }
+            var searchPath = "/" + searchXml;
+            initSearch(searchPath, 'search-input', 'search-result');
+        });
+
+        // 初始化搜索与匹配函数
+        var initSearch = function(path, search_id, content_id) {
+            'use strict';
+            $.ajax({
+                url: path,
+                dataType: "xml",
+                success: function(xmlResponse) {
+                    // get the contents from search data
+                    var datas = $("entry", xmlResponse).map(function() {
+                        return {
+                            title: $("title", this).text(),
+                            content: $("content", this).text(),
+                            url: $("url", this).text()
+                        };
+                    }).get();
+                    var $input = document.getElementById(search_id);
+                    var $resultContent = document.getElementById(content_id);
+                    $input.addEventListener('input', function() {
+                        var str = '<ul class=\"search-result-list\">';
+                        var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                        $resultContent.innerHTML = "";
+                        if (this.value.trim().length <= 0) {
+                            return;
+                        }
+                        // perform local searching
+                        datas.forEach(function(data) {
+                            var isMatch = true;
+                            var content_index = [];
+                            var data_title = data.title.trim().toLowerCase();
+                            var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                            var data_url = data.url;
+                            var index_title = -1;
+                            var index_content = -1;
+                            var first_occur = -1;
+                            // only match artiles with not empty titles and contents
+                            if (data_title != '' && data_content != '') {
+                                keywords.forEach(function(keyword, i) {
+                                    index_title = data_title.indexOf(keyword);
+                                    index_content = data_content.indexOf(keyword);
+                                    if (index_title < 0 && index_content < 0) {
+                                        isMatch = false;
+                                    } else {
+                                        if (index_content < 0) {
+                                            index_content = 0;
+                                        }
+                                        if (i == 0) {
+                                            first_occur = index_content;
+                                        }
+                                    }
+                                });
+                            }
+                            // show search results
+                            if (isMatch) {
+                                keywords.forEach(function(keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    data_title = data_title.replace(regS, "<span class=\"search-keyword pink lighten-2\">" + keyword + "</span>");
+                                });
+
+                                str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                                var content = data.content.trim().replace(/<[^>]+>/g, "");
+                                if (first_occur >= 0) {
+                                    // cut out 100 characters
+                                    var start = first_occur - 20;
+                                    var end = first_occur + 80;
+                                    if (start < 0) {
+                                        start = 0;
+                                    }
+                                    if (start == 0) {
+                                        end = 100;
+                                    }
+                                    if (end > content.length) {
+                                        end = content.length;
+                                    }
+                                    var match_content = content.substring(start, end);
+                                    // highlight all keywords
+                                    keywords.forEach(function(keyword) {
+                                        var regS = new RegExp(keyword, "gi");
+                                        match_content = match_content.replace(regS, "<span class=\"search-keyword pink lighten-2\">" + keyword + "</span>");
+                                    });
+
+                                    str += "<p class=\"search-result\">..." + match_content + "...</p>"
+                                }
+                                str += "</li>";
+                            }
+                        });
+                        str += "</ul>";
+                        $resultContent.innerHTML = str;
+                    });
+                }
+            });
+        }
+    })(jQuery);
+</script>
+
+
+<script src="/js/prettify.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("pre").addClass("prettyprint");
+        prettyPrint();
+    });
+</script>
+
+
+
+
+<script type="text/javascript" src="http://tajs.qq.com/stats?sId=63632788" charset="UTF-8"></script>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script type="text/javascript" async
+  src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+
+</body>
+</html>

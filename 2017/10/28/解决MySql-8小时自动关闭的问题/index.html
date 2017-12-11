@@ -1,0 +1,1064 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    
+
+    <title>解决MySql 8小时自动关闭的问题 | 未来的小幸运 || 致正在努力的我们--------逸如风</title>
+    <meta name="author" content="逸如风">
+    
+    <meta name="description" content="吴晓文的个人博客">
+    
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta property="og:title" content="解决MySql 8小时自动关闭的问题"/>
+    <meta property="og:site_name" content="未来的小幸运 || 致正在努力的我们--------逸如风"/>
+
+    
+    <meta property="og:image" content=""/>
+    
+
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="alternate" href="/atom.xml" title="未来的小幸运 || 致正在努力的我们--------逸如风" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/lib/materialize.min.css">
+    <link rel="stylesheet" href="/css/lib/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+
+    
+        <link rel="stylesheet" href="/css/lib/Tranquil Heart.css" type="text/css">
+    
+    <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+
+
+<body>
+    <img src="/weixin_favicon.png" style="position: absolute; left: -9999px; opacity: 0; filter: alpha(opacity=0);">
+
+    <nav class="indigo">
+    <div class="nav-wrapper">
+        <a href="#" data-activates="main-menu" class="button-collapse">
+            <i class="fa fa-navicon"></i>
+        </a>
+        <div class="">
+            <a href="/" class="brand-logo hide-on-med-and-down">未来的小幸运 || 致正在努力的我们--------逸如风</a>
+            <ul class="right hide-on-med-and-down">
+                
+                    <li>
+                        <a class="menu-home " href="/" >
+                            <i class="fa fa-home "></i>
+                            
+                            首页
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-archive " href="/archives" >
+                            <i class="fa fa-archive "></i>
+                            
+                            归档
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-category category-menu" href="javascript:;" data-activates="category-menu" >
+                            <i class="fa fa-bookmark "></i>
+                            
+                            分类
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-reading " href="/reading" >
+                            <i class="fa fa-book "></i>
+                            
+                            读书
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-about " href="/about" >
+                            <i class="fa fa-user "></i>
+                            
+                            关于
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-search modal-trigger " href="#search" >
+                            <i class="fa fa-search "></i>
+                            
+                            搜索
+                        </a>
+                    </li>
+                
+            </ul>
+            <div>
+    <ul class="side-nav indigo darken-1" id="main-menu">
+        
+        <li class="side-user">
+            <div class="row">
+                <div class="col s4 no-padding">
+                    <img class="avatar-image circle responsive-img" src="http://on3w7gc9m.bkt.clouddn.com/touxiang.png" alt="User Avatar">
+                </div>
+                <div class="info col s8 valign-wrapper no-padding">
+                    <div class="valign">
+                        <p class="name">逸如风</p>
+                        <p class="desc">待进化的Geek一枚</p>
+                    </div>
+                </div>
+            </div>
+        </li>
+        
+
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-home " href="/" >
+                    <i class="fa fa-home "></i>
+                    
+                    首页
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-archive " href="/archives" >
+                    <i class="fa fa-archive "></i>
+                    
+                    归档
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-category category-menu" href="javascript:;" data-activates="category-menu" >
+                    <i class="fa fa-bookmark "></i>
+                    
+                    分类
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-reading " href="/reading" >
+                    <i class="fa fa-book "></i>
+                    
+                    读书
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-about " href="/about" >
+                    <i class="fa fa-user "></i>
+                    
+                    关于
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-search modal-trigger " href="#search" >
+                    <i class="fa fa-search "></i>
+                    
+                    搜索
+                </a>
+            </li>
+        
+    </ul>
+
+    <ul class="side-nav indigo darken-1" id="category-menu">
+    
+
+            
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Algorithm/">
+                    Algorithm <span class="right">3 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/Algorithm/BubbleSort/">
+                    BubbleSort <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/Algorithm/策略/">
+                    策略 <span class="right">2 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Android/">
+                    Android <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Java/">
+                    Java <span class="right">26 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/Java/基础/">
+                    基础 <span class="right">10 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/Java/Swing/">
+                    Swing <span class="right">2 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/Java/Util基本类的使用/">
+                    Util基本类的使用 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/Java/Internationalization/">
+                    Internationalization <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/Java/数组/">
+                    数组 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/Java/socket/">
+                    socket <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/Java/XML/">
+                    XML <span class="right">2 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/Java/Class/">
+                    Class <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/Java/Security/">
+                    Security <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/Java/File/">
+                    File <span class="right">2 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/Java/泛型/">
+                    泛型 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/Java/jsp/">
+                    jsp <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/Java/线程/">
+                    线程 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/常用命令/">
+                    常用命令 <span class="right">3 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/框架/">
+                    框架 <span class="right">10 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/框架/Hibernate/">
+                    Hibernate <span class="right">3 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/框架/MyBatis/">
+                    MyBatis <span class="right">3 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/框架/Spring/">
+                    Spring <span class="right">2 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/框架/Mybatis/">
+                    Mybatis <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/框架/整合/">
+                    整合 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Tools/">
+                    Tools <span class="right">2 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/GitHub/">
+                    GitHub <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/GitHub/Linux/">
+                    Linux <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/MySQL/">
+                    MySQL <span class="right">2 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/MySQL/SQL/">
+                    SQL <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/MySQL/正则表达式/">
+                    正则表达式 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/jQuery/">
+                    jQuery <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/jQuery/事件/">
+                    事件 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/JavaScript/">
+                    JavaScript <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Python/">
+                    Python <span class="right">3 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/Python/pydoc/">
+                    pydoc <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/Python/Basic/">
+                    Basic <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/Python/基础/">
+                    基础 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/json/">
+                    json <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/json/级联/">
+                    级联 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/HTML-CSS/">
+                    HTML-CSS <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/HTML-CSS/优化/">
+                    优化 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/计算机基本知识/">
+                    计算机基本知识 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/微信/">
+                    微信 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/微信/开发/">
+                    开发 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/开源软件/">
+                    开源软件 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/开源软件/Druid/">
+                    Druid <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/MySql/">
+                    MySql <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/MySql/8小时/">
+                    8小时 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+    </ul>
+</div>
+
+        </div>
+    </div>
+</nav>
+
+<div id="search" class="modal search-modal">
+    <div class="row">
+        <div class="input-field col s12">
+              <input id="search-input" type="text">
+              <label for="search-input">搜索</label>
+        </div>
+
+    </div>
+    <div id="search-result" class="search-result col s12">
+
+    </div>
+</div>
+
+
+    <main>
+        <div class="container main-container">
+    <nav class="page-nav hide-on-small-only">
+    <div class="nav-wrapper indigo">
+        <span class="breadcrumb">当前位置（分类目录）</span>
+        
+            
+    
+    
+    <a class="breadcrumb" href="/categories/MySql/">MySql</a><a class="breadcrumb" href="/categories/MySql/8小时/">8小时</a>
+
+
+        
+
+        
+    </div>
+</nav>
+
+<article>
+    <div class="card">
+        <div class="card-content">
+            
+
+            <div class="article-title">
+                
+    
+        <h1>解决MySql 8小时自动关闭的问题</h1>
+    
+
+
+            </div>
+            <time class="pink-link-context" datetime="2017-10-28T02:08:04.000Z"><a href="/2017/10/28/解决MySql-8小时自动关闭的问题/">2017-10-28</a></time>
+
+            <span id="busuanzi_container_page_pv" class="read-times-container">
+    <i class="fa fa-eye"></i>
+    <span id="busuanzi_value_page_pv"></span>
+</span>
+
+            
+    <div class="tags-row">
+        
+            <a href="/tags/Hibernate/" class="chip pink lighten-1">Hibernate</a>
+        
+            <a href="/tags/MySql/" class="chip pink lighten-1">MySql</a>
+        
+    </div>
+
+
+            <div class="toc pink-link-context hide-on-med-and-down">
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#前言："><span class="section table-of-contents-text"><a href="#&#x524D;&#x8A00;&#xFF1A;" class="headerlink" title="&#x524D;&#x8A00;&#xFF1A;"></a>&#x524D;&#x8A00;&#xFF1A;</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#查询当前数据库连接超时时间"><span class="section table-of-contents-text"><a href="#&#x67E5;&#x8BE2;&#x5F53;&#x524D;&#x6570;&#x636E;&#x5E93;&#x8FDE;&#x63A5;&#x8D85;&#x65F6;&#x65F6;&#x95F4;" class="headerlink" title="&#x67E5;&#x8BE2;&#x5F53;&#x524D;&#x6570;&#x636E;&#x5E93;&#x8FDE;&#x63A5;&#x8D85;&#x65F6;&#x65F6;&#x95F4;"></a>&#x67E5;&#x8BE2;&#x5F53;&#x524D;&#x6570;&#x636E;&#x5E93;&#x8FDE;&#x63A5;&#x8D85;&#x65F6;&#x65F6;&#x95F4;</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#解决方法"><span class="section table-of-contents-text"><a href="#&#x89E3;&#x51B3;&#x65B9;&#x6CD5;" class="headerlink" title="&#x89E3;&#x51B3;&#x65B9;&#x6CD5;"></a>&#x89E3;&#x51B3;&#x65B9;&#x6CD5;</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#方法一："><span class="section table-of-contents-text"><a href="#&#x65B9;&#x6CD5;&#x4E00;&#xFF1A;" class="headerlink" title="&#x65B9;&#x6CD5;&#x4E00;&#xFF1A;"></a>&#x65B9;&#x6CD5;&#x4E00;&#xFF1A;</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#方法二："><span class="section table-of-contents-text"><a href="#&#x65B9;&#x6CD5;&#x4E8C;&#xFF1A;" class="headerlink" title="&#x65B9;&#x6CD5;&#x4E8C;&#xFF1A;"></a>&#x65B9;&#x6CD5;&#x4E8C;&#xFF1A;</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#方法三：连接池文件配置"><span class="section table-of-contents-text"><a href="#&#x65B9;&#x6CD5;&#x4E09;&#xFF1A;&#x8FDE;&#x63A5;&#x6C60;&#x6587;&#x4EF6;&#x914D;&#x7F6E;" class="headerlink" title="&#x65B9;&#x6CD5;&#x4E09;&#xFF1A;&#x8FDE;&#x63A5;&#x6C60;&#x6587;&#x4EF6;&#x914D;&#x7F6E;"></a>&#x65B9;&#x6CD5;&#x4E09;&#xFF1A;&#x8FDE;&#x63A5;&#x6C60;&#x6587;&#x4EF6;&#x914D;&#x7F6E;</span></a></li></ol></li></ol>
+</div>
+
+
+            <div class="entry pink-link-context">
+                <h2 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h2><blockquote>
+<p>记得自己之前在服务器上部署了一个很low的假期签到系统，每次叫大家签到都是晚上，很大程度上讲，时间已经过了将近16个小时，每次第二天叫大家签到的时候，很多人，都发了同一个问题给我，服务器报了连接异常，后来听到身边的大牛才知道，原来MySql如果配置不当，连接空闲超过8小时，MySql将会关闭该连接，但是我们服务器认为连接还是存在的，因此还会访问，所以就会出现异常情况</p>
+<p>也有一部分原因自己是知道的，因为自己采用了c3p0数据源，所以才会出现这个情况，而dbcp则不会出现如此情况！</p>
+</blockquote>
+<hr>
+<h2 id="查询当前数据库连接超时时间"><a href="#查询当前数据库连接超时时间" class="headerlink" title="查询当前数据库连接超时时间"></a>查询当前数据库连接超时时间</h2><blockquote>
+<p>mysql 命令行中 键入如下命令</p>
+</blockquote>
+<p>SHOW GLOBAL VARIABLES LIKE ‘wait_timeout’;</p>
+<blockquote>
+<p>结果如下</p>
+</blockquote>
+<p><img src="http://on3w7gc9m.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720171030103053.png"></p>
+<p>超时时间为28800秒，换算下来也就是8小时</p>
+<hr>
+<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><h3 id="方法一："><a href="#方法一：" class="headerlink" title="方法一："></a>方法一：</h3><blockquote>
+<p>这个也是自己之前的方法：也就是采用一个简单的定时器，每隔7小时定时查一下数据库，不让连接自动关闭，</p>
+</blockquote>
+<h3 id="方法二："><a href="#方法二：" class="headerlink" title="方法二："></a>方法二：</h3><blockquote>
+<p>每次当我们连接到数据库中的时候，url可改为：<br>jdbc:mysql://localhost:3306/test?user=root&amp;password=root&amp;useUnicode=true&amp;characterEncoding=utf8&amp;autoReconnect=true&amp;failOverReadOnly=false</p>
+</blockquote>
+<a id="more"></a>
+<p>通过设置autoReconnect 和 failOverReadOnly 来进行连接异常时的重新设置</p>
+<blockquote>
+<p>具体参数如下图</p>
+</blockquote>
+<table><tbody><tr bgcolor="#cedee7"><td align="center" width="85">参数名称</td><td align="center" width="200">参数说明</td><td align="center" width="50">缺省值</td><td align="center" width="80">最低版本要求</td></tr><tr bgcolor="#ffffff"><td>user</td><td>数据库用户名（用于连接数据库）</td><td>&nbsp;</td><td>所有版本</td></tr><tr bgcolor="#ffffff"><td>password</td><td>用户密码（用于连接数据库）</td><td>&nbsp;</td><td>所有版本</td></tr><tr bgcolor="#ffffff"><td>useUnicode</td><td>是否使用Unicode字符集，如果参数characterEncoding设置为gb2312或gbk，本参数值必须设置为true</td><td>false</td><td>1.1g</td></tr><tr bgcolor="#ffffff"><td>characterEncoding</td><td>当useUnicode设置为true时，指定字符编码。比如可设置为gb2312或gbk</td><td>false</td><td>1.1g</td></tr><tr bgcolor="#ffffff"><td>autoReconnect</td><td>当数据库连接异常中断时，是否自动重新连接？</td><td>false</td><td>1.1</td></tr><tr bgcolor="#ffffff"><td>autoReconnectForPools</td><td>是否使用针对数据库连接池的重连策略</td><td>false</td><td>3.1.3</td></tr><tr bgcolor="#ffffff"><td>failOverReadOnly</td><td>自动重连成功后，连接是否设置为只读？</td><td>true</td><td>3.0.12</td></tr><tr bgcolor="#ffffff"><td>maxReconnects</td><td>autoReconnect设置为true时，重试连接的次数</td><td>3</td><td>1.1</td></tr><tr bgcolor="#ffffff"><td>initialTimeout</td><td>autoReconnect设置为true时，两次重连之间的时间间隔，单位：秒</td><td>2</td><td>1.1</td></tr><tr bgcolor="#ffffff"><td>connectTimeout</td><td>和数据库服务器建立socket连接时的超时，单位：毫秒。 0表示永不超时，适用于JDK 1.4及更高版本</td><td>0</td><td>3.0.1</td></tr><tr bgcolor="#ffffff"><td>socketTimeout</td><td>socket操作（读写）超时，单位：毫秒。 0表示永不超时</td><td>0</td><td>3.0.1</td></tr></tbody></table>
+
+<h3 id="方法三：连接池文件配置"><a href="#方法三：连接池文件配置" class="headerlink" title="方法三：连接池文件配置"></a>方法三：连接池文件配置</h3><blockquote>
+<p>由于自己没有使用c3p0配置文件，如果有c3p0配置文件，建议在cep0配置文件中进行如下配置</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br></pre></td><td class="code"><pre><span class="line">&lt;c3p0-config&gt;</span><br><span class="line">&lt;default-config&gt;</span><br><span class="line">&lt;!--当连接池中的连接耗尽的时候c3p0一次同时获取的连接数。Default: 3 --&gt;</span><br><span class="line">&lt;property name=&quot;acquireIncrement&quot;&gt;3&lt;/property&gt;</span><br><span class="line"></span><br><span class="line">&lt;!--定义在从数据库获取新连接失败后重复尝试的次数。Default: 30 --&gt;</span><br><span class="line">&lt;property name=&quot;acquireRetryAttempts&quot;&gt;30&lt;/property&gt;</span><br><span class="line"></span><br><span class="line">&lt;!--两次连接中间隔时间，单位毫秒。Default: 1000 --&gt;</span><br><span class="line">&lt;property name=&quot;acquireRetryDelay&quot;&gt;1000&lt;/property&gt;</span><br><span class="line"></span><br><span class="line">&lt;!--连接关闭时默认将所有未提交的操作回滚。Default: false --&gt;</span><br><span class="line">&lt;property name=&quot;autoCommitOnClose&quot;&gt;false&lt;/property&gt;</span><br><span class="line"></span><br><span class="line">&lt;!--c3p0将建一张名为Test的空表，并使用其自带的查询语句进行测试。如果定义了这个参数 那么</span><br><span class="line">属性preferredTestQuery将被忽略。你不能在这张Test表上进行任何操作，它将只供c3p0测试</span><br><span class="line">使用。Default: null--&gt;</span><br><span class="line">&lt;property name=&quot;automaticTestTable&quot;&gt;Test&lt;/property&gt;</span><br><span class="line"></span><br><span class="line">&lt;!--获取连接失败将会引起所有等待连接池来获取连接的线程抛出异常。但是数据源仍有效</span><br><span class="line">保留，并在下次调用getConnection()的时候继续尝试获取连接。如果设为true，那么在尝试</span><br><span class="line">获取连接失败后该数据源将申明已断开并永久关闭。Default: false--&gt;</span><br><span class="line">&lt;property name=&quot;breakAfterAcquireFailure&quot;&gt;false&lt;/property&gt;</span><br><span class="line"></span><br><span class="line">&lt;!--当连接池用完时客户端调用getConnection()后等待获取新连接的时间，超时后将 抛出</span><br><span class="line">SQLException,如设为0则无限期等待。单位毫秒。Default: 0 --&gt;</span><br><span class="line">&lt;property name=&quot;checkoutTimeout&quot;&gt;100&lt;/property&gt;</span><br><span class="line"></span><br><span class="line">&lt;!--通过实现ConnectionTester或QueryConnectionTester的 类来 测试连接。类名需制定全路径。</span><br><span class="line">Default: com.mchange.v2.c3p0.impl.DefaultConnectionTester--&gt;</span><br><span class="line">&lt;property name=&quot;connectionTesterClassName&quot;&gt;&lt;/property&gt;</span><br><span class="line"></span><br><span class="line">&lt;!--指定c3p0 libraries的路径，如果（通常都是这样）在本地即可获得那么无需设置，默认null即可</span><br><span class="line">Default: null--&gt;</span><br><span class="line">&lt;property name=&quot;factoryClassLocation&quot;&gt;null&lt;/property&gt;</span><br><span class="line"></span><br><span class="line">&lt;!--Strongly disrecommended. Setting this to true may lead to subtle and bizarre bugs.</span><br><span class="line">（文档原文）作者强烈建议不使用的一个属性--&gt;</span><br><span class="line">&lt;property name=&quot;forceIgnoreUnresolvedTransactions&quot;&gt;false&lt;/property&gt;</span><br><span class="line"></span><br><span class="line">&lt;!--每60秒检查所有连接池中的空闲连接。Default: 0 --&gt;</span><br><span class="line">&lt;property name=&quot;idleConnectionTestPeriod&quot;&gt;60&lt;/property&gt;</span><br><span class="line"></span><br><span class="line">&lt;!--初始化时获取三个连接，取值应在minPoolSize与maxPoolSize之间。 Default: 3 --&gt;</span><br><span class="line">&lt;property name=&quot;initialPoolSize&quot;&gt;3&lt;/property&gt;</span><br><span class="line"></span><br><span class="line">&lt;!--最大空闲时间,60秒内未使用则连接被丢弃。若为0则永不丢弃。Default: 0 --&gt;</span><br><span class="line">&lt;property name=&quot;maxIdleTime&quot;&gt;60&lt;/property&gt;</span><br><span class="line"></span><br><span class="line">&lt;!--连接池中保留的最大连接数。Default: 15 --&gt;</span><br><span class="line">&lt;property name=&quot;maxPoolSize&quot;&gt;15&lt;/property&gt;</span><br><span class="line"></span><br><span class="line">&lt;!--JDBC的标准参数，用以控制数据源内加载的PreparedStatements数量。但 由于预缓存的statements</span><br><span class="line">属于单个connection而不是整个连接池。所以设置这个参数需要考虑到多方面的因素。</span><br><span class="line">如果maxStatements与maxStatementsPerConnection均为0，则缓存被关闭。Default: 0--&gt;</span><br><span class="line">&lt;property name=&quot;maxStatements&quot;&gt;100&lt;/property&gt;</span><br><span class="line"></span><br><span class="line">&lt;!--maxStatementsPerConnection定义了连接池内单个连接所 拥有的最大缓存statements数。Default: 0 --&gt;</span><br><span class="line">&lt;property name=&quot;maxStatementsPerConnection&quot;&gt;&lt;/property&gt;</span><br><span class="line"></span><br><span class="line">&lt;!--c3p0是异步操作的，缓慢的JDBC操作通过帮助进程完成。扩展这些操作可以有效的提升性 能</span><br><span class="line">通过多线程实现多个操作同时被执行。Default: 3--&gt;</span><br><span class="line">&lt;property name=&quot;numHelperThreads&quot;&gt;3&lt;/property&gt;</span><br><span class="line"></span><br><span class="line">&lt;!--当用户调用getConnection()时使root用户成为去获取连接的用户。主要用于 连接池连接非c3p0</span><br><span class="line">的数据源时。Default: null--&gt;</span><br><span class="line">&lt;property name=&quot;overrideDefaultUser&quot;&gt;root&lt;/property&gt;</span><br><span class="line"></span><br><span class="line">&lt;!--与overrideDefaultUser参数对应使用的一个参数。Default: null--&gt;</span><br><span class="line">&lt;property name=&quot;overrideDefaultPassword&quot;&gt;password&lt;/property&gt;</span><br><span class="line"></span><br><span class="line">&lt;!--密码。Default: null--&gt;</span><br><span class="line">&lt;property name=&quot;password&quot;&gt;&lt;/property&gt;</span><br><span class="line"></span><br><span class="line">&lt;!--定义所有连接测试都执行的测试语句。在使用连接测试的情况下这个一显著提高测试速度。注意：</span><br><span class="line">测试的表必须在初始数据源的时候就存在。Default: null--&gt;</span><br><span class="line">&lt;property name=&quot;preferredTestQuery&quot;&gt;select id from test where id=1&lt;/property&gt;</span><br><span class="line"></span><br><span class="line">&lt;!--用户修改系统配置参数执行前最多等待300秒。Default: 300 --&gt;</span><br><span class="line">&lt;property name=&quot;propertyCycle&quot;&gt;300&lt;/property&gt;</span><br><span class="line"></span><br><span class="line">&lt;!--因性能消耗大请只在需要的时候使用它。如果设为true那么在每个connection提交 的</span><br><span class="line">时候都将校验其有效性。建议使用idleConnectionTestPeriod或automaticTestTable</span><br><span class="line">等方法来提升连接测试的性能。Default: false --&gt;</span><br><span class="line">&lt;property name=&quot;testConnectionOnCheckout&quot;&gt;false&lt;/property&gt;</span><br><span class="line"></span><br><span class="line">&lt;!--如果设为true那么在取得连接的同时将校验连接的有效性。Default: false --&gt;</span><br><span class="line">&lt;property name=&quot;testConnectionOnCheckin&quot;&gt;true&lt;/property&gt;</span><br><span class="line"></span><br><span class="line">&lt;!--用户名。Default: null--&gt;</span><br><span class="line">&lt;property name=&quot;user&quot;&gt;root&lt;/property&gt;</span><br><span class="line"></span><br><span class="line">&lt;!--早期的c3p0版本对JDBC接口采用动态反射代理。在早期版本用途广泛的情况下这个参数</span><br><span class="line">允许用户恢复到动态反射代理以解决不稳定的故障。最新的非反射代理更快并且已经开始</span><br><span class="line">广泛的被使用，所以这个参数未必有用。现在原先的动态反射与新的非反射代理同时受到</span><br><span class="line">支持，但今后可能的版本可能不支持动态反射代理。Default: false--&gt;</span><br><span class="line">&lt;property name=&quot;usesTraditionalReflectiveProxies&quot;&gt;false&lt;/property&gt;</span><br><span class="line"></span><br><span class="line">&lt;property name=&quot;automaticTestTable&quot;&gt;con_test&lt;/property&gt;</span><br><span class="line">&lt;property name=&quot;checkoutTimeout&quot;&gt;30000&lt;/property&gt;</span><br><span class="line">&lt;property name=&quot;idleConnectionTestPeriod&quot;&gt;30&lt;/property&gt;</span><br><span class="line">&lt;property name=&quot;initialPoolSize&quot;&gt;10&lt;/property&gt;</span><br><span class="line">&lt;property name=&quot;maxIdleTime&quot;&gt;30&lt;/property&gt;</span><br><span class="line">&lt;property name=&quot;maxPoolSize&quot;&gt;25&lt;/property&gt;</span><br><span class="line">&lt;property name=&quot;minPoolSize&quot;&gt;10&lt;/property&gt;</span><br><span class="line">&lt;property name=&quot;maxStatements&quot;&gt;0&lt;/property&gt;</span><br><span class="line">&lt;user-overrides user=&quot;swaldman&quot;&gt;</span><br><span class="line">&lt;/user-overrides&gt;</span><br><span class="line">&lt;/default-config&gt;</span><br><span class="line">&lt;named-config name=&quot;dumbTestConfig&quot;&gt;</span><br><span class="line">&lt;property name=&quot;maxStatements&quot;&gt;200&lt;/property&gt;</span><br><span class="line">&lt;user-overrides user=&quot;poop&quot;&gt;</span><br><span class="line">&lt;property name=&quot;maxStatements&quot;&gt;300&lt;/property&gt;</span><br><span class="line">&lt;/user-overrides&gt;</span><br><span class="line">&lt;/named-config&gt;</span><br><span class="line">&lt;/c3p0-config&gt;</span><br></pre></td></tr></table></figure>
+
+                
+<p class="pink-link-context">
+    <a href="/2017/10/30/使用json级联改变部门员工/" rel="next" title="使用json级联改变部门员工">
+    上一篇：使用json级联改变部门员工
+  </a>
+</p>
+
+
+
+<p class="pink-link-context">
+    <a href="/2017/10/26/Spring中使用注解/" rel="next" title="Spring中使用注解">
+    下一篇：Spring中使用注解
+  </a>
+</p>
+
+
+            </div>
+			
+        </div>
+    </div>
+</article>
+
+
+
+
+    <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href,
+        sourceId: "",
+        productKey: "128846229ecc425f8450fc6fdc0151c8",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
+
+
+
+</div>
+
+        <div class="fixed-action-btn float-sitemap">
+    <a class="btn-floating btn-large pink">
+      <i class="fa fa-caret-square-o-up"></i>
+    </a>
+    <ul>
+      <li><a class="btn-return-top btn-floating waves-effect green" title="回到顶部"><i class="fa fa-arrow-circle-o-up"></i></a></li>
+      <li><a class="btn-floating waves-effect button-collapse yellow darken-1"  data-activates="main-menu" title="菜单"><i class="fa fa-navicon"></i></a></li>
+    </ul>
+  </div>
+
+    </main>
+    <footer class="page-footer indigo darken-1">
+    
+    <div class="footer-container container">
+        <div class="row">
+            
+            <div class="social-group col m4 s12">
+                <h5 class="white-text">社交</h5>
+                
+                    <a class="social-link" href="https://www.linkedin.com/in/%E6%99%93%E6%96%87-%E5%90%B4-79057a121/" target="_blank">
+                        <i class="fa fa-2x fa-linkedin"></i>
+                    </a>
+                
+                    <a class="social-link" href="http://weibo.com/Msingwen0222/home?wvr=5" target="_blank">
+                        <i class="fa fa-2x fa-weibo"></i>
+                    </a>
+                
+                    <a class="social-link" href="https://github.com/sivanWu0222" target="_blank">
+                        <i class="fa fa-2x fa-github"></i>
+                    </a>
+                
+                    <a class="social-link" href="http://wpa.qq.com/msgrd?v=3&amp;uin=1666762170&amp;site=qq&amp;menu=yes" target="_blank">
+                        <i class="fa fa-2x fa-qq"></i>
+                    </a>
+                
+                    <a class="social-link" href="https://zh-cn.facebook.com/people/SiVan-Wu/100014408918389" target="_blank">
+                        <i class="fa fa-2x fa-facebook"></i>
+                    </a>
+                
+                    <a class="social-link" href="https://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&amp;email=xfTz8-Py8-f08vWFtLTrpqqo" target="_blank">
+                        <i class="fa fa-2x fa-envelope"></i>
+                    </a>
+                
+                    <a class="social-link" href="https://twitter.com/SiVan_Wu" target="_blank">
+                        <i class="fa fa-2x fa-twitter"></i>
+                    </a>
+                
+                    <a class="social-link" href="/atom.xml" target="_blank">
+                        <i class="fa fa-2x fa-rss"></i>
+                    </a>
+                
+
+                
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+    </script>
+    <div class="site-visitors-container white-text">
+        <span>
+            <i class="fa fa-user"></i>
+            <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+        </span>
+        <span>&nbsp;|&nbsp;</span>
+        <span>
+            <i class="fa fa-eye"></i>
+            <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+        </span>
+    </div>
+
+
+            </div>
+            
+
+            
+            <div class="col m8 s12">
+                <h5 class="white-text">友情链接</h5>
+
+                
+                    <a class="social-link" href="http://www.ai-start.com/" target="_blank">AI翻译笔记</a>
+                
+                    <a class="social-link" href="http://www.grace527.com" target="_blank">吴其顺</a>
+                
+                    <a class="social-link" href="http://www.xiaqianan.top/" target="_blank">刘霈</a>
+                
+                    <a class="social-link" href="http://www.rxdonny.com" target="_blank">唐仁鑫</a>
+                
+                    <a class="social-link" href="https://www.byvoid.com/" target="_blank">byvoid</a>
+                
+                    <a class="social-link" href="http://blog.csdn.net/Bryan__" target="_blank">Bryan__</a>
+                
+                    <a class="social-link" href="http://blog.csdn.net/a819825294" target="_blank">雪伦</a>
+                
+                    <a class="social-link" href="http://blog.csdn.net/v_JULY_v" target="_blank">JULY大神</a>
+                
+                    <a class="social-link" href="http://miccall.tech/" target="_blank">王金铮</a>
+                
+                    <a class="social-link" href="http://wxz.name" target="_blank">汪小祯</a>
+                
+                    <a class="social-link" href="http://www.zengheng.top" target="_blank">曾恒</a>
+                
+                    <a class="social-link" href="http://gunpowder.net.cn" target="_blank">曹巍</a>
+                
+                    <a class="social-link" href="http://hikerell.cn/" target="_blank">hiker</a>
+                
+            </div>
+            
+        </div>
+    </div>
+    
+
+    <div class="footer-copyright pink-link-context">
+        <div class="container">
+            <a href="http://www.sivan0222.cn">Copyright ©  2016 - 2017 sivan All rights reserved.</a>
+            <p class="right" style="margin-top: 0;"> <a href="http://www.miitbeian.gov.cn/publish/query/indexFirst.action">湘ICP备16017041号</a></p>
+        </div>
+    </div>
+</footer>
+
+
+    <noscript>
+    <div class="noscript">
+        <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
+    </div>
+</noscript>
+<div class="noscript">
+    <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
+</div>
+
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/materialize.min.js"></script>
+
+<script>
+    (function($) {
+        $(document).ready(function() {
+            // 隐藏禁用javascript（针对微信内置浏览器）的提示
+            $('.noscript').hide();
+
+            // 图片缩放效果
+            var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image').not('.qrcode');
+
+            // 给图片加上点击放大效果（materialbox插件）
+            $imgs.addClass('materialboxed').each(function(i, el) {
+                $(this).attr('data-caption', $(this).attr('alt') || ' ');
+            }).materialbox();
+
+            // 优化表格的显示
+            $('table').each(function() {
+                var $table = $(this);
+                // 除去多行代码的情况
+                if ($table.find('pre').length == 0) {
+                    $table.addClass('responsive-table striped bordered');
+                }
+            });
+
+            // 首页幻灯片
+            $('.slider').slider({indicators: true, full_width: true, interval: 8000});
+
+            $(".button-collapse").sideNav();
+            $(".category-menu").sideNav();
+
+            // 针对gallery post
+            $('.carousel').carousel({full_width: true});
+            $('.carousel-control.prev').click(function() {
+                $('.carousel').carousel('prev');
+            });
+            $('.carousel-control.next').click(function() {
+                $('.carousel').carousel('next');
+            });
+
+            // 文章目录
+            $('article').not('.simple-article').find('h1').add('h2').add('h3').add('h4').add('h5').add('h6').scrollSpy();
+
+            // 目录随屏幕滚动（防止目录过长越过footer）
+            var $toc = $('.toc');
+            var scrollTargetTop = 0;
+            $(window).scroll(function() {
+                var $activeLink = $toc.find('a.active.section');
+                if ($(window).scrollTop() < 100) {
+                    scrollTargetTop = 0;
+                } else {
+                    if ($activeLink[0]) {
+                        scrollTargetTop = $activeLink.offset().top - $toc.offset().top;
+                    }
+                }
+                $toc.css('top', '-' + scrollTargetTop + 'px');
+            });
+
+            // 修正文章目录的left-border颜色
+            var color = $('.table-of-contents-text').css('color');
+            $('.table-of-contents-link').css('border-left-color', color);
+
+            // 针对移动端做的优化：FAB按钮点击一下收回
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                $('.fixed-action-btn').addClass('click-to-toggle');
+            }
+            // 回到顶部
+            $('.btn-return-top').click(function() {
+                $('body, html').animate({
+                    scrollTop: 0
+                }, 500);
+            });
+
+            // 重置读书页面的Tab标签页的颜色
+            $('li.tab a').hover(function() {
+                $(this).toggleClass('text-lighten-4');
+            });
+            $('.indicator').addClass('pink lighten-2');
+
+            
+            // 添加new标签
+            $('.menu-reading, .menu-about').append('<span class="new badge pink"></span>');
+            
+
+            // 搜索功能
+            $('.modal-trigger').leanModal({
+                // 打开搜索框时自动聚焦
+                ready: function() {
+                    if ($('#search').is(":visible")) {
+                        $('#search-input').focus();
+                    }
+                }
+            });
+            var searchXml = "";
+            if (searchXml.length == 0) {
+             	searchXml = "search.xml";
+            }
+            var searchPath = "/" + searchXml;
+            initSearch(searchPath, 'search-input', 'search-result');
+        });
+
+        // 初始化搜索与匹配函数
+        var initSearch = function(path, search_id, content_id) {
+            'use strict';
+            $.ajax({
+                url: path,
+                dataType: "xml",
+                success: function(xmlResponse) {
+                    // get the contents from search data
+                    var datas = $("entry", xmlResponse).map(function() {
+                        return {
+                            title: $("title", this).text(),
+                            content: $("content", this).text(),
+                            url: $("url", this).text()
+                        };
+                    }).get();
+                    var $input = document.getElementById(search_id);
+                    var $resultContent = document.getElementById(content_id);
+                    $input.addEventListener('input', function() {
+                        var str = '<ul class=\"search-result-list\">';
+                        var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                        $resultContent.innerHTML = "";
+                        if (this.value.trim().length <= 0) {
+                            return;
+                        }
+                        // perform local searching
+                        datas.forEach(function(data) {
+                            var isMatch = true;
+                            var content_index = [];
+                            var data_title = data.title.trim().toLowerCase();
+                            var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                            var data_url = data.url;
+                            var index_title = -1;
+                            var index_content = -1;
+                            var first_occur = -1;
+                            // only match artiles with not empty titles and contents
+                            if (data_title != '' && data_content != '') {
+                                keywords.forEach(function(keyword, i) {
+                                    index_title = data_title.indexOf(keyword);
+                                    index_content = data_content.indexOf(keyword);
+                                    if (index_title < 0 && index_content < 0) {
+                                        isMatch = false;
+                                    } else {
+                                        if (index_content < 0) {
+                                            index_content = 0;
+                                        }
+                                        if (i == 0) {
+                                            first_occur = index_content;
+                                        }
+                                    }
+                                });
+                            }
+                            // show search results
+                            if (isMatch) {
+                                keywords.forEach(function(keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    data_title = data_title.replace(regS, "<span class=\"search-keyword pink lighten-2\">" + keyword + "</span>");
+                                });
+
+                                str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                                var content = data.content.trim().replace(/<[^>]+>/g, "");
+                                if (first_occur >= 0) {
+                                    // cut out 100 characters
+                                    var start = first_occur - 20;
+                                    var end = first_occur + 80;
+                                    if (start < 0) {
+                                        start = 0;
+                                    }
+                                    if (start == 0) {
+                                        end = 100;
+                                    }
+                                    if (end > content.length) {
+                                        end = content.length;
+                                    }
+                                    var match_content = content.substring(start, end);
+                                    // highlight all keywords
+                                    keywords.forEach(function(keyword) {
+                                        var regS = new RegExp(keyword, "gi");
+                                        match_content = match_content.replace(regS, "<span class=\"search-keyword pink lighten-2\">" + keyword + "</span>");
+                                    });
+
+                                    str += "<p class=\"search-result\">..." + match_content + "...</p>"
+                                }
+                                str += "</li>";
+                            }
+                        });
+                        str += "</ul>";
+                        $resultContent.innerHTML = str;
+                    });
+                }
+            });
+        }
+    })(jQuery);
+</script>
+
+
+<script src="/js/prettify.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("pre").addClass("prettyprint");
+        prettyPrint();
+    });
+</script>
+
+
+
+
+<script type="text/javascript" src="http://tajs.qq.com/stats?sId=63632788" charset="UTF-8"></script>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script type="text/javascript" async
+  src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+
+</body>
+</html>

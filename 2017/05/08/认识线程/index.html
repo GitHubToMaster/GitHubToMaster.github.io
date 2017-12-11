@@ -1,0 +1,1092 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    
+
+    <title>认识线程 | 未来的小幸运 || 致正在努力的我们--------逸如风</title>
+    <meta name="author" content="逸如风">
+    
+    <meta name="description" content="吴晓文的个人博客">
+    
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta property="og:title" content="认识线程"/>
+    <meta property="og:site_name" content="未来的小幸运 || 致正在努力的我们--------逸如风"/>
+
+    
+    <meta property="og:image" content=""/>
+    
+
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="alternate" href="/atom.xml" title="未来的小幸运 || 致正在努力的我们--------逸如风" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/lib/materialize.min.css">
+    <link rel="stylesheet" href="/css/lib/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+
+    
+        <link rel="stylesheet" href="/css/lib/Tranquil Heart.css" type="text/css">
+    
+    <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+
+
+<body>
+    <img src="/weixin_favicon.png" style="position: absolute; left: -9999px; opacity: 0; filter: alpha(opacity=0);">
+
+    <nav class="indigo">
+    <div class="nav-wrapper">
+        <a href="#" data-activates="main-menu" class="button-collapse">
+            <i class="fa fa-navicon"></i>
+        </a>
+        <div class="">
+            <a href="/" class="brand-logo hide-on-med-and-down">未来的小幸运 || 致正在努力的我们--------逸如风</a>
+            <ul class="right hide-on-med-and-down">
+                
+                    <li>
+                        <a class="menu-home " href="/" >
+                            <i class="fa fa-home "></i>
+                            
+                            首页
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-archive " href="/archives" >
+                            <i class="fa fa-archive "></i>
+                            
+                            归档
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-category category-menu" href="javascript:;" data-activates="category-menu" >
+                            <i class="fa fa-bookmark "></i>
+                            
+                            分类
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-reading " href="/reading" >
+                            <i class="fa fa-book "></i>
+                            
+                            读书
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-about " href="/about" >
+                            <i class="fa fa-user "></i>
+                            
+                            关于
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-search modal-trigger " href="#search" >
+                            <i class="fa fa-search "></i>
+                            
+                            搜索
+                        </a>
+                    </li>
+                
+            </ul>
+            <div>
+    <ul class="side-nav indigo darken-1" id="main-menu">
+        
+        <li class="side-user">
+            <div class="row">
+                <div class="col s4 no-padding">
+                    <img class="avatar-image circle responsive-img" src="http://on3w7gc9m.bkt.clouddn.com/touxiang.png" alt="User Avatar">
+                </div>
+                <div class="info col s8 valign-wrapper no-padding">
+                    <div class="valign">
+                        <p class="name">逸如风</p>
+                        <p class="desc">待进化的Geek一枚</p>
+                    </div>
+                </div>
+            </div>
+        </li>
+        
+
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-home " href="/" >
+                    <i class="fa fa-home "></i>
+                    
+                    首页
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-archive " href="/archives" >
+                    <i class="fa fa-archive "></i>
+                    
+                    归档
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-category category-menu" href="javascript:;" data-activates="category-menu" >
+                    <i class="fa fa-bookmark "></i>
+                    
+                    分类
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-reading " href="/reading" >
+                    <i class="fa fa-book "></i>
+                    
+                    读书
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-about " href="/about" >
+                    <i class="fa fa-user "></i>
+                    
+                    关于
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-search modal-trigger " href="#search" >
+                    <i class="fa fa-search "></i>
+                    
+                    搜索
+                </a>
+            </li>
+        
+    </ul>
+
+    <ul class="side-nav indigo darken-1" id="category-menu">
+    
+
+            
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Algorithm/">
+                    Algorithm <span class="right">3 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/Algorithm/BubbleSort/">
+                    BubbleSort <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/Algorithm/策略/">
+                    策略 <span class="right">2 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Android/">
+                    Android <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Java/">
+                    Java <span class="right">26 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/Java/基础/">
+                    基础 <span class="right">10 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/Java/Swing/">
+                    Swing <span class="right">2 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/Java/Util基本类的使用/">
+                    Util基本类的使用 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/Java/Internationalization/">
+                    Internationalization <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/Java/数组/">
+                    数组 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/Java/socket/">
+                    socket <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/Java/XML/">
+                    XML <span class="right">2 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/Java/Class/">
+                    Class <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/Java/Security/">
+                    Security <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/Java/File/">
+                    File <span class="right">2 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/Java/泛型/">
+                    泛型 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/Java/jsp/">
+                    jsp <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/Java/线程/">
+                    线程 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/常用命令/">
+                    常用命令 <span class="right">3 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/框架/">
+                    框架 <span class="right">10 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/框架/Hibernate/">
+                    Hibernate <span class="right">3 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/框架/MyBatis/">
+                    MyBatis <span class="right">3 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/框架/Spring/">
+                    Spring <span class="right">2 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/框架/Mybatis/">
+                    Mybatis <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/框架/整合/">
+                    整合 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Tools/">
+                    Tools <span class="right">2 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/GitHub/">
+                    GitHub <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/GitHub/Linux/">
+                    Linux <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/MySQL/">
+                    MySQL <span class="right">2 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/MySQL/SQL/">
+                    SQL <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/MySQL/正则表达式/">
+                    正则表达式 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/jQuery/">
+                    jQuery <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/jQuery/事件/">
+                    事件 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/JavaScript/">
+                    JavaScript <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Python/">
+                    Python <span class="right">3 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/Python/pydoc/">
+                    pydoc <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/Python/Basic/">
+                    Basic <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/Python/基础/">
+                    基础 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/json/">
+                    json <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/json/级联/">
+                    级联 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/HTML-CSS/">
+                    HTML-CSS <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/HTML-CSS/优化/">
+                    优化 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/计算机基本知识/">
+                    计算机基本知识 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/微信/">
+                    微信 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/微信/开发/">
+                    开发 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/开源软件/">
+                    开源软件 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/开源软件/Druid/">
+                    Druid <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/MySql/">
+                    MySql <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/MySql/8小时/">
+                    8小时 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+    </ul>
+</div>
+
+        </div>
+    </div>
+</nav>
+
+<div id="search" class="modal search-modal">
+    <div class="row">
+        <div class="input-field col s12">
+              <input id="search-input" type="text">
+              <label for="search-input">搜索</label>
+        </div>
+
+    </div>
+    <div id="search-result" class="search-result col s12">
+
+    </div>
+</div>
+
+
+    <main>
+        <div class="container main-container">
+    <nav class="page-nav hide-on-small-only">
+    <div class="nav-wrapper indigo">
+        <span class="breadcrumb">当前位置（分类目录）</span>
+        
+            
+    
+    
+    <a class="breadcrumb" href="/categories/Java/">Java</a><a class="breadcrumb" href="/categories/Java/线程/">线程</a>
+
+
+        
+
+        
+    </div>
+</nav>
+
+<article>
+    <div class="card">
+        <div class="card-content">
+            
+
+            <div class="article-title">
+                
+    
+        <h1>认识线程</h1>
+    
+
+
+            </div>
+            <time class="pink-link-context" datetime="2017-05-08T07:10:31.000Z"><a href="/2017/05/08/认识线程/">2017-05-08</a></time>
+
+            <span id="busuanzi_container_page_pv" class="read-times-container">
+    <i class="fa fa-eye"></i>
+    <span id="busuanzi_value_page_pv"></span>
+</span>
+
+            
+    <div class="tags-row">
+        
+            <a href="/tags/Java/" class="chip pink lighten-1">Java</a>
+        
+            <a href="/tags/线程/" class="chip pink lighten-1">线程</a>
+        
+    </div>
+
+
+            <div class="toc pink-link-context hide-on-med-and-down">
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#线程"><span class="section table-of-contents-text"><a href="#&#x7EBF;&#x7A0B;" class="headerlink" title="&#x7EBF;&#x7A0B;"></a>&#x7EBF;&#x7A0B;</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#创建一个线程"><span class="section table-of-contents-text"><a href="#&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x7EBF;&#x7A0B;" class="headerlink" title="&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x7EBF;&#x7A0B;"></a>&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x7EBF;&#x7A0B;</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#实现Runnable接口"><span class="section table-of-contents-text"><a href="#&#x5B9E;&#x73B0;Runnable&#x63A5;&#x53E3;" class="headerlink" title="&#x5B9E;&#x73B0;Runnable&#x63A5;&#x53E3;"></a>&#x5B9E;&#x73B0;Runnable&#x63A5;&#x53E3;</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#继承Thread"><span class="section table-of-contents-text"><a href="#&#x7EE7;&#x627F;Thread" class="headerlink" title="&#x7EE7;&#x627F;Thread"></a>&#x7EE7;&#x627F;Thread</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#错误的使用sleep方法"><span class="section table-of-contents-text"><a href="#&#x9519;&#x8BEF;&#x7684;&#x4F7F;&#x7528;sleep&#x65B9;&#x6CD5;" class="headerlink" title="&#x9519;&#x8BEF;&#x7684;&#x4F7F;&#x7528;sleep&#x65B9;&#x6CD5;"></a>&#x9519;&#x8BEF;&#x7684;&#x4F7F;&#x7528;sleep&#x65B9;&#x6CD5;</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#使用yield-方法为其他线程让出cpu时间"><span class="section table-of-contents-text"><a href="#&#x4F7F;&#x7528;yield-&#x65B9;&#x6CD5;&#x4E3A;&#x5176;&#x4ED6;&#x7EBF;&#x7A0B;&#x8BA9;&#x51FA;cpu&#x65F6;&#x95F4;" class="headerlink" title="&#x4F7F;&#x7528;yield()&#x65B9;&#x6CD5;&#x4E3A;&#x5176;&#x4ED6;&#x7EBF;&#x7A0B;&#x8BA9;&#x51FA;cpu&#x65F6;&#x95F4;"></a>&#x4F7F;&#x7528;yield()&#x65B9;&#x6CD5;&#x4E3A;&#x5176;&#x4ED6;&#x7EBF;&#x7A0B;&#x8BA9;&#x51FA;cpu&#x65F6;&#x95F4;</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#线程优先级"><span class="section table-of-contents-text"><a href="#&#x7EBF;&#x7A0B;&#x4F18;&#x5148;&#x7EA7;" class="headerlink" title="&#x7EBF;&#x7A0B;&#x4F18;&#x5148;&#x7EA7;"></a>&#x7EBF;&#x7A0B;&#x4F18;&#x5148;&#x7EA7;</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-4"><a class="section table-of-contents-link" href="#资源竞争（缺乏状态）"><span class="section table-of-contents-text"><a href="#&#x8D44;&#x6E90;&#x7ADE;&#x4E89;&#xFF08;&#x7F3A;&#x4E4F;&#x72B6;&#x6001;&#xFF09;" class="headerlink" title="&#x8D44;&#x6E90;&#x7ADE;&#x4E89;&#xFF08;&#x7F3A;&#x4E4F;&#x72B6;&#x6001;&#xFF09;"></a>&#x8D44;&#x6E90;&#x7ADE;&#x4E89;&#xFF08;&#x7F3A;&#x4E4F;&#x72B6;&#x6001;&#xFF09;</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-5"><a class="section table-of-contents-link" href="#避免方法（给低优先级或者相同优先级的线程一个运行程序的机会）"><span class="section table-of-contents-text"><a href="#&#x907F;&#x514D;&#x65B9;&#x6CD5;&#xFF08;&#x7ED9;&#x4F4E;&#x4F18;&#x5148;&#x7EA7;&#x6216;&#x8005;&#x76F8;&#x540C;&#x4F18;&#x5148;&#x7EA7;&#x7684;&#x7EBF;&#x7A0B;&#x4E00;&#x4E2A;&#x8FD0;&#x884C;&#x7A0B;&#x5E8F;&#x7684;&#x673A;&#x4F1A;&#xFF09;" class="headerlink" title="&#x907F;&#x514D;&#x65B9;&#x6CD5;&#xFF08;&#x7ED9;&#x4F4E;&#x4F18;&#x5148;&#x7EA7;&#x6216;&#x8005;&#x76F8;&#x540C;&#x4F18;&#x5148;&#x7EA7;&#x7684;&#x7EBF;&#x7A0B;&#x4E00;&#x4E2A;&#x8FD0;&#x884C;&#x7A0B;&#x5E8F;&#x7684;&#x673A;&#x4F1A;&#xFF09;"></a>&#x907F;&#x514D;&#x65B9;&#x6CD5;&#xFF08;&#x7ED9;&#x4F4E;&#x4F18;&#x5148;&#x7EA7;&#x6216;&#x8005;&#x76F8;&#x540C;&#x4F18;&#x5148;&#x7EA7;&#x7684;&#x7EBF;&#x7A0B;&#x4E00;&#x4E2A;&#x8FD0;&#x884C;&#x7A0B;&#x5E8F;&#x7684;&#x673A;&#x4F1A;&#xFF09;</span></a></li></ol></li></ol></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#闪烁文本"><span class="section table-of-contents-text"><a href="#&#x95EA;&#x70C1;&#x6587;&#x672C;" class="headerlink" title="&#x95EA;&#x70C1;&#x6587;&#x672C;"></a>&#x95EA;&#x70C1;&#x6587;&#x672C;</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#动画的设置"><span class="section table-of-contents-text"><a href="#&#x52A8;&#x753B;&#x7684;&#x8BBE;&#x7F6E;" class="headerlink" title="&#x52A8;&#x753B;&#x7684;&#x8BBE;&#x7F6E;"></a>&#x52A8;&#x753B;&#x7684;&#x8BBE;&#x7F6E;</span></a></li></ol></li></ol></li></ol>
+</div>
+
+
+            <div class="entry pink-link-context">
+                <blockquote>
+<p>早期的操作系统，建立在了所谓的cpu，存储器，IO设备之上，但是最为宝贵的便是cpu，计算机发展至今，硬盘已经从几M发展到现在的几TB，cpu仍在不紧不慢发展，作为计算机的大脑，cpu可谓肩负重任，早期的操作系统，由于系统的缺陷，cpu只能运行单道作业，如果要等待IO，便会一直等下去，直到我们使用完IO之后，才会响应，这便是所谓的单道作业的缺陷！</p>
+</blockquote>
+<p>  随着操作系统发展，我们将cpu分的越来越详细，从最初的一个程序–&gt;作业–&gt;进程–&gt;线程，个人认为是由于cpu的发展跟不上我们的需求，才会促使我们将cpu更为紧细的利用，直到现在的多核多线程，我们便开始专心研究多线程，以提高任务效率，而不是促使我们的应用程序崩溃！</p>
+<h1 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h1><blockquote>
+<p>线程来源于一个进程，但是由于进程切换开销大，为了提高cpu的利用率，所以我们便将单个进程分为多个线程，多个线程可以并发或者并行运行，各线程在运行过程中会因为访问共享数据及等待数据而发生互斥与同步的关系<br>多线程可以使程序反应更快，交互性更强，执行效率更高</p>
+</blockquote>
+<h2 id="创建一个线程"><a href="#创建一个线程" class="headerlink" title="创建一个线程"></a>创建一个线程</h2><blockquote>
+<p>Java中的程序，我们通常从main方法开始执行，jvm便会给main创建一个线程，从上到下开始执行main方法<br>当Java程序作为applet开始运行的时候，web浏览器便会启动一个线程来运行applet</p>
+</blockquote>
+<h3 id="实现Runnable接口"><a href="#实现Runnable接口" class="headerlink" title="实现Runnable接口"></a>实现Runnable接口</h3><blockquote>
+<p>通常我们采用该方法来实现多线程</p>
+</blockquote>
+<ol>
+<li>实现Runnable接口以及相应的run方法</li>
+<li>创建一个Thread，并分配任务给Thread</li>
+<li>调用Thread实例的start方法开启线程（<font color="red">不可以调用run方法，如果调用，只是在当前线程执行run方法，并不会产生多线程</font>）</li>
+</ol>
+<a id="more"></a>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> <span class="keyword">implements</span> <span class="title">Runnable</span></span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  Test test = <span class="keyword">new</span> Test();</span><br><span class="line">  Thread thread = <span class="keyword">new</span> Thread(test);</span><br><span class="line">  thread.start();</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*这里的run方法指明如何完成这个任务，如果使用新线程来执行，Java虚拟机会自动调用该方法*/</span></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">while</span>(<span class="keyword">true</span>)&#123;</span><br><span class="line">    Date date = <span class="keyword">new</span> Date();</span><br><span class="line">    SimpleDateFormat sdf = <span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy-MM-dd HH:mm:ss"</span>);</span><br><span class="line">    String date1 = sdf.format(date);</span><br><span class="line">    System.out.println(date1);</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">      <span class="comment">// TODO Auto-generated catch block</span></span><br><span class="line">      e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="继承Thread"><a href="#继承Thread" class="headerlink" title="继承Thread"></a>继承Thread</h3><blockquote>
+<p>由于JAVA是单继承，我们经常不使用该方法来实现多线程，并且继承Thread，会让我们将<font color="red">任务和运行任务的机制混在了一起</font></p>
+</blockquote>
+<ol>
+<li>继承Thread</li>
+<li>重写run方法</li>
+<li>使用当前类的实例调用start方法</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> <span class="keyword">extends</span> <span class="title">Thread</span></span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">  Test test = <span class="keyword">new</span> Test();</span><br><span class="line">  test.start();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">while</span>(<span class="keyword">true</span>)&#123;</span><br><span class="line">    System.out.println(<span class="keyword">new</span> Date());</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">while</span>(<span class="keyword">true</span>)&#123;</span><br><span class="line">    System.out.println(<span class="string">"A"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="错误的使用sleep方法"><a href="#错误的使用sleep方法" class="headerlink" title="错误的使用sleep方法"></a>错误的使用sleep方法</h2><blockquote>
+<p>sleep()方法将会让调用该方法的线程进入休眠状态，因此如果我们错误的使用该方法，将会影响程序的健壮性！！！</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Third</span> <span class="keyword">implements</span> <span class="title">Runnable</span></span>&#123;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">100</span>; i++)&#123;</span><br><span class="line">    System.out.println(<span class="string">"A"</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="comment">/*当一个休眠线程的interrupte()被调用，就会产生这样一个异常*/</span></span><br><span class="line">    Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">  &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 使用这种方法来抛出异常是错误的</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="keyword">try</span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(<span class="keyword">true</span>)&#123;</span><br><span class="line">      Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;<span class="keyword">catch</span>(InterruptedException e)&#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 使用这种方法来抛出异常是正确的</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="keyword">while</span>( <span class="keyword">true</span> )&#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">      <span class="comment">// TODO Auto-generated catch block</span></span><br><span class="line">      e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>由于使用stop()，以及suspend()，resume()，存在不安全因素，现在的JDK并不提倡使用这些方法，为了替代stop()方法，我们可以通过给Thread变量赋值null来终止当前线程</p>
+</blockquote>
+<hr>
+<h2 id="使用yield-方法为其他线程让出cpu时间"><a href="#使用yield-方法为其他线程让出cpu时间" class="headerlink" title="使用yield()方法为其他线程让出cpu时间"></a>使用yield()方法为其他线程让出cpu时间</h2><blockquote>
+<p>yield()方法可以为其他线程临时让出cpu时间，对于可能出现死锁的程序，我们可以使用该方法来避免</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test2</span> <span class="keyword">implements</span> <span class="title">Runnable</span></span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">  Test2 test = <span class="keyword">new</span> Test2();</span><br><span class="line">  Thread thread = <span class="keyword">new</span> Thread(test);</span><br><span class="line">  thread.start();</span><br><span class="line"></span><br><span class="line">  Test2 test1 = <span class="keyword">new</span> Test2();</span><br><span class="line">  Thread thread1 = <span class="keyword">new</span> Thread(test1);</span><br><span class="line">  thread1.start();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="comment">/*设置thread1线程的优先级最高，因为JVM总是从优先级最高的线程开始执行 */</span></span><br><span class="line">  thread1.setPriority(Thread.MAX_PRIORITY);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">while</span>(<span class="keyword">true</span>)&#123;</span><br><span class="line">    <span class="comment">/*输出当前执行的线程的ID*/</span></span><br><span class="line">    System.out.println(Thread.currentThread().getId());</span><br><span class="line">    <span class="comment">/*为其他线程临时让出CPU时间*/</span></span><br><span class="line">    Thread.yield();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="线程优先级"><a href="#线程优先级" class="headerlink" title="线程优先级"></a>线程优先级</h2><blockquote>
+<p>众所周知，cpu在线程中采用时间片轮转算法，JVM也是如此，将会执行优先级最高的线程，较低的优先级会使得当前线程再有在没有比它优先级更高的线程的时候才会执行，如果优先级相同，系统会将线程排到一个循环队列中等待，然后进行cpu调度，一个一个开始执行</p>
+</blockquote>
+<h4 id="资源竞争（缺乏状态）"><a href="#资源竞争（缺乏状态）" class="headerlink" title="资源竞争（缺乏状态）"></a>资源竞争（缺乏状态）</h4><blockquote>
+<p>如果总有一个优先级较高的线程在运行，或者有一个相同优先级的程序不愿意退出，那么这个线程可能永远也没有运行的机会，称为资源竞争</p>
+</blockquote>
+<h5 id="避免方法（给低优先级或者相同优先级的线程一个运行程序的机会）"><a href="#避免方法（给低优先级或者相同优先级的线程一个运行程序的机会）" class="headerlink" title="避免方法（给低优先级或者相同优先级的线程一个运行程序的机会）"></a>避免方法（给低优先级或者相同优先级的线程一个运行程序的机会）</h5><ol>
+<li>调用线程的yield方法，可以使得线程临时让出cpu资源</li>
+<li>调用线程的sleep方法</li>
+</ol>
+<hr>
+<h2 id="闪烁文本"><a href="#闪烁文本" class="headerlink" title="闪烁文本"></a>闪烁文本</h2><h3 id="动画的设置"><a href="#动画的设置" class="headerlink" title="动画的设置"></a>动画的设置</h3><blockquote>
+<p>定时器和一个线程都可以控制动画，但是使用定时器（一个源组件，以“固定的速率触发一个ActionEvent时间，发生动作时间，定时器会调用监听器的actionPersormed方法来处理这个事件，定时器和事件处理都处于同一事件分发线程上”）</p>
+<p>如果处理这个事件需要花费很长时间，那么两个事件之间真正的延时时间将比请求延时时间更长，这种情况下，萤爱在一个独立的线程上运行事件处理</p>
+<p>通常，线程比定时器更加可靠，响应速度更快，如果需要精确的延迟时间或者快速相应，最好使用线程，否则，使用定时器会比线程更加简单，也更加有效，因为定时器运行在GUI事件分发线程上，所以，定时器比线程占用的系统资源少，故而不需要为定时器创建新线程</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FlashingText</span>  <span class="keyword">extends</span> <span class="title">JApplet</span> <span class="keyword">implements</span> <span class="title">Runnable</span></span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> JLabel label = <span class="keyword">new</span> JLabel(<span class="string">"Welcome"</span>, JLabel.CENTER);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span>  <span class="title">FlashingText</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		add(label);</span><br><span class="line">		<span class="keyword">new</span> Thread(<span class="keyword">this</span>).start();</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">try</span>&#123;</span><br><span class="line">			<span class="keyword">while</span>(<span class="keyword">true</span>)&#123;</span><br><span class="line">				<span class="keyword">if</span>(label.getText() == <span class="keyword">null</span>)</span><br><span class="line">					label.setText(<span class="string">"Welcome"</span>);</span><br><span class="line">				<span class="keyword">else</span></span><br><span class="line">					label.setText(<span class="keyword">null</span>);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;<span class="keyword">catch</span>(Exception e)&#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+                
+<p class="pink-link-context">
+    <a href="/2017/05/09/浅谈Java中的文件和编码/" rel="next" title="浅谈Java中的文件和编码">
+    上一篇：浅谈Java中的文件和编码
+  </a>
+</p>
+
+
+
+<p class="pink-link-context">
+    <a href="/2017/05/05/JTable表头，表数据居中以及关键字查找和分页/" rel="next" title="JTable表头，表数据居中以及关键字查找和分页">
+    下一篇：JTable表头，表数据居中以及关键字查找和分页
+  </a>
+</p>
+
+
+            </div>
+			
+        </div>
+    </div>
+</article>
+
+
+
+
+    <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href,
+        sourceId: "",
+        productKey: "128846229ecc425f8450fc6fdc0151c8",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
+
+
+
+</div>
+
+        <div class="fixed-action-btn float-sitemap">
+    <a class="btn-floating btn-large pink">
+      <i class="fa fa-caret-square-o-up"></i>
+    </a>
+    <ul>
+      <li><a class="btn-return-top btn-floating waves-effect green" title="回到顶部"><i class="fa fa-arrow-circle-o-up"></i></a></li>
+      <li><a class="btn-floating waves-effect button-collapse yellow darken-1"  data-activates="main-menu" title="菜单"><i class="fa fa-navicon"></i></a></li>
+    </ul>
+  </div>
+
+    </main>
+    <footer class="page-footer indigo darken-1">
+    
+    <div class="footer-container container">
+        <div class="row">
+            
+            <div class="social-group col m4 s12">
+                <h5 class="white-text">社交</h5>
+                
+                    <a class="social-link" href="https://www.linkedin.com/in/%E6%99%93%E6%96%87-%E5%90%B4-79057a121/" target="_blank">
+                        <i class="fa fa-2x fa-linkedin"></i>
+                    </a>
+                
+                    <a class="social-link" href="http://weibo.com/Msingwen0222/home?wvr=5" target="_blank">
+                        <i class="fa fa-2x fa-weibo"></i>
+                    </a>
+                
+                    <a class="social-link" href="https://github.com/sivanWu0222" target="_blank">
+                        <i class="fa fa-2x fa-github"></i>
+                    </a>
+                
+                    <a class="social-link" href="http://wpa.qq.com/msgrd?v=3&amp;uin=1666762170&amp;site=qq&amp;menu=yes" target="_blank">
+                        <i class="fa fa-2x fa-qq"></i>
+                    </a>
+                
+                    <a class="social-link" href="https://zh-cn.facebook.com/people/SiVan-Wu/100014408918389" target="_blank">
+                        <i class="fa fa-2x fa-facebook"></i>
+                    </a>
+                
+                    <a class="social-link" href="https://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&amp;email=xfTz8-Py8-f08vWFtLTrpqqo" target="_blank">
+                        <i class="fa fa-2x fa-envelope"></i>
+                    </a>
+                
+                    <a class="social-link" href="https://twitter.com/SiVan_Wu" target="_blank">
+                        <i class="fa fa-2x fa-twitter"></i>
+                    </a>
+                
+                    <a class="social-link" href="/atom.xml" target="_blank">
+                        <i class="fa fa-2x fa-rss"></i>
+                    </a>
+                
+
+                
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+    </script>
+    <div class="site-visitors-container white-text">
+        <span>
+            <i class="fa fa-user"></i>
+            <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+        </span>
+        <span>&nbsp;|&nbsp;</span>
+        <span>
+            <i class="fa fa-eye"></i>
+            <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+        </span>
+    </div>
+
+
+            </div>
+            
+
+            
+            <div class="col m8 s12">
+                <h5 class="white-text">友情链接</h5>
+
+                
+                    <a class="social-link" href="http://www.ai-start.com/" target="_blank">AI翻译笔记</a>
+                
+                    <a class="social-link" href="http://www.grace527.com" target="_blank">吴其顺</a>
+                
+                    <a class="social-link" href="http://www.xiaqianan.top/" target="_blank">刘霈</a>
+                
+                    <a class="social-link" href="http://www.rxdonny.com" target="_blank">唐仁鑫</a>
+                
+                    <a class="social-link" href="https://www.byvoid.com/" target="_blank">byvoid</a>
+                
+                    <a class="social-link" href="http://blog.csdn.net/Bryan__" target="_blank">Bryan__</a>
+                
+                    <a class="social-link" href="http://blog.csdn.net/a819825294" target="_blank">雪伦</a>
+                
+                    <a class="social-link" href="http://blog.csdn.net/v_JULY_v" target="_blank">JULY大神</a>
+                
+                    <a class="social-link" href="http://miccall.tech/" target="_blank">王金铮</a>
+                
+                    <a class="social-link" href="http://wxz.name" target="_blank">汪小祯</a>
+                
+                    <a class="social-link" href="http://www.zengheng.top" target="_blank">曾恒</a>
+                
+                    <a class="social-link" href="http://gunpowder.net.cn" target="_blank">曹巍</a>
+                
+                    <a class="social-link" href="http://hikerell.cn/" target="_blank">hiker</a>
+                
+            </div>
+            
+        </div>
+    </div>
+    
+
+    <div class="footer-copyright pink-link-context">
+        <div class="container">
+            <a href="http://www.sivan0222.cn">Copyright ©  2016 - 2017 sivan All rights reserved.</a>
+            <p class="right" style="margin-top: 0;"> <a href="http://www.miitbeian.gov.cn/publish/query/indexFirst.action">湘ICP备16017041号</a></p>
+        </div>
+    </div>
+</footer>
+
+
+    <noscript>
+    <div class="noscript">
+        <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
+    </div>
+</noscript>
+<div class="noscript">
+    <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
+</div>
+
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/materialize.min.js"></script>
+
+<script>
+    (function($) {
+        $(document).ready(function() {
+            // 隐藏禁用javascript（针对微信内置浏览器）的提示
+            $('.noscript').hide();
+
+            // 图片缩放效果
+            var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image').not('.qrcode');
+
+            // 给图片加上点击放大效果（materialbox插件）
+            $imgs.addClass('materialboxed').each(function(i, el) {
+                $(this).attr('data-caption', $(this).attr('alt') || ' ');
+            }).materialbox();
+
+            // 优化表格的显示
+            $('table').each(function() {
+                var $table = $(this);
+                // 除去多行代码的情况
+                if ($table.find('pre').length == 0) {
+                    $table.addClass('responsive-table striped bordered');
+                }
+            });
+
+            // 首页幻灯片
+            $('.slider').slider({indicators: true, full_width: true, interval: 8000});
+
+            $(".button-collapse").sideNav();
+            $(".category-menu").sideNav();
+
+            // 针对gallery post
+            $('.carousel').carousel({full_width: true});
+            $('.carousel-control.prev').click(function() {
+                $('.carousel').carousel('prev');
+            });
+            $('.carousel-control.next').click(function() {
+                $('.carousel').carousel('next');
+            });
+
+            // 文章目录
+            $('article').not('.simple-article').find('h1').add('h2').add('h3').add('h4').add('h5').add('h6').scrollSpy();
+
+            // 目录随屏幕滚动（防止目录过长越过footer）
+            var $toc = $('.toc');
+            var scrollTargetTop = 0;
+            $(window).scroll(function() {
+                var $activeLink = $toc.find('a.active.section');
+                if ($(window).scrollTop() < 100) {
+                    scrollTargetTop = 0;
+                } else {
+                    if ($activeLink[0]) {
+                        scrollTargetTop = $activeLink.offset().top - $toc.offset().top;
+                    }
+                }
+                $toc.css('top', '-' + scrollTargetTop + 'px');
+            });
+
+            // 修正文章目录的left-border颜色
+            var color = $('.table-of-contents-text').css('color');
+            $('.table-of-contents-link').css('border-left-color', color);
+
+            // 针对移动端做的优化：FAB按钮点击一下收回
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                $('.fixed-action-btn').addClass('click-to-toggle');
+            }
+            // 回到顶部
+            $('.btn-return-top').click(function() {
+                $('body, html').animate({
+                    scrollTop: 0
+                }, 500);
+            });
+
+            // 重置读书页面的Tab标签页的颜色
+            $('li.tab a').hover(function() {
+                $(this).toggleClass('text-lighten-4');
+            });
+            $('.indicator').addClass('pink lighten-2');
+
+            
+            // 添加new标签
+            $('.menu-reading, .menu-about').append('<span class="new badge pink"></span>');
+            
+
+            // 搜索功能
+            $('.modal-trigger').leanModal({
+                // 打开搜索框时自动聚焦
+                ready: function() {
+                    if ($('#search').is(":visible")) {
+                        $('#search-input').focus();
+                    }
+                }
+            });
+            var searchXml = "";
+            if (searchXml.length == 0) {
+             	searchXml = "search.xml";
+            }
+            var searchPath = "/" + searchXml;
+            initSearch(searchPath, 'search-input', 'search-result');
+        });
+
+        // 初始化搜索与匹配函数
+        var initSearch = function(path, search_id, content_id) {
+            'use strict';
+            $.ajax({
+                url: path,
+                dataType: "xml",
+                success: function(xmlResponse) {
+                    // get the contents from search data
+                    var datas = $("entry", xmlResponse).map(function() {
+                        return {
+                            title: $("title", this).text(),
+                            content: $("content", this).text(),
+                            url: $("url", this).text()
+                        };
+                    }).get();
+                    var $input = document.getElementById(search_id);
+                    var $resultContent = document.getElementById(content_id);
+                    $input.addEventListener('input', function() {
+                        var str = '<ul class=\"search-result-list\">';
+                        var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                        $resultContent.innerHTML = "";
+                        if (this.value.trim().length <= 0) {
+                            return;
+                        }
+                        // perform local searching
+                        datas.forEach(function(data) {
+                            var isMatch = true;
+                            var content_index = [];
+                            var data_title = data.title.trim().toLowerCase();
+                            var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                            var data_url = data.url;
+                            var index_title = -1;
+                            var index_content = -1;
+                            var first_occur = -1;
+                            // only match artiles with not empty titles and contents
+                            if (data_title != '' && data_content != '') {
+                                keywords.forEach(function(keyword, i) {
+                                    index_title = data_title.indexOf(keyword);
+                                    index_content = data_content.indexOf(keyword);
+                                    if (index_title < 0 && index_content < 0) {
+                                        isMatch = false;
+                                    } else {
+                                        if (index_content < 0) {
+                                            index_content = 0;
+                                        }
+                                        if (i == 0) {
+                                            first_occur = index_content;
+                                        }
+                                    }
+                                });
+                            }
+                            // show search results
+                            if (isMatch) {
+                                keywords.forEach(function(keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    data_title = data_title.replace(regS, "<span class=\"search-keyword pink lighten-2\">" + keyword + "</span>");
+                                });
+
+                                str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                                var content = data.content.trim().replace(/<[^>]+>/g, "");
+                                if (first_occur >= 0) {
+                                    // cut out 100 characters
+                                    var start = first_occur - 20;
+                                    var end = first_occur + 80;
+                                    if (start < 0) {
+                                        start = 0;
+                                    }
+                                    if (start == 0) {
+                                        end = 100;
+                                    }
+                                    if (end > content.length) {
+                                        end = content.length;
+                                    }
+                                    var match_content = content.substring(start, end);
+                                    // highlight all keywords
+                                    keywords.forEach(function(keyword) {
+                                        var regS = new RegExp(keyword, "gi");
+                                        match_content = match_content.replace(regS, "<span class=\"search-keyword pink lighten-2\">" + keyword + "</span>");
+                                    });
+
+                                    str += "<p class=\"search-result\">..." + match_content + "...</p>"
+                                }
+                                str += "</li>";
+                            }
+                        });
+                        str += "</ul>";
+                        $resultContent.innerHTML = str;
+                    });
+                }
+            });
+        }
+    })(jQuery);
+</script>
+
+
+<script src="/js/prettify.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("pre").addClass("prettyprint");
+        prettyPrint();
+    });
+</script>
+
+
+
+
+<script type="text/javascript" src="http://tajs.qq.com/stats?sId=63632788" charset="UTF-8"></script>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script type="text/javascript" async
+  src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+
+</body>
+</html>

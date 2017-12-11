@@ -1,0 +1,1149 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    
+
+    <title>MySQL存储引擎的选择 | 未来的小幸运 || 致正在努力的我们--------逸如风</title>
+    <meta name="author" content="逸如风">
+    
+    <meta name="description" content="吴晓文的个人博客">
+    
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta property="og:title" content="MySQL存储引擎的选择"/>
+    <meta property="og:site_name" content="未来的小幸运 || 致正在努力的我们--------逸如风"/>
+
+    
+    <meta property="og:image" content=""/>
+    
+
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="alternate" href="/atom.xml" title="未来的小幸运 || 致正在努力的我们--------逸如风" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/lib/materialize.min.css">
+    <link rel="stylesheet" href="/css/lib/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+
+    
+        <link rel="stylesheet" href="/css/lib/Tranquil Heart.css" type="text/css">
+    
+    <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+
+
+<body>
+    <img src="/weixin_favicon.png" style="position: absolute; left: -9999px; opacity: 0; filter: alpha(opacity=0);">
+
+    <nav class="indigo">
+    <div class="nav-wrapper">
+        <a href="#" data-activates="main-menu" class="button-collapse">
+            <i class="fa fa-navicon"></i>
+        </a>
+        <div class="">
+            <a href="/" class="brand-logo hide-on-med-and-down">未来的小幸运 || 致正在努力的我们--------逸如风</a>
+            <ul class="right hide-on-med-and-down">
+                
+                    <li>
+                        <a class="menu-home " href="/" >
+                            <i class="fa fa-home "></i>
+                            
+                            首页
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-archive " href="/archives" >
+                            <i class="fa fa-archive "></i>
+                            
+                            归档
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-category category-menu" href="javascript:;" data-activates="category-menu" >
+                            <i class="fa fa-bookmark "></i>
+                            
+                            分类
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-reading " href="/reading" >
+                            <i class="fa fa-book "></i>
+                            
+                            读书
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-about " href="/about" >
+                            <i class="fa fa-user "></i>
+                            
+                            关于
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-search modal-trigger " href="#search" >
+                            <i class="fa fa-search "></i>
+                            
+                            搜索
+                        </a>
+                    </li>
+                
+            </ul>
+            <div>
+    <ul class="side-nav indigo darken-1" id="main-menu">
+        
+        <li class="side-user">
+            <div class="row">
+                <div class="col s4 no-padding">
+                    <img class="avatar-image circle responsive-img" src="http://on3w7gc9m.bkt.clouddn.com/touxiang.png" alt="User Avatar">
+                </div>
+                <div class="info col s8 valign-wrapper no-padding">
+                    <div class="valign">
+                        <p class="name">逸如风</p>
+                        <p class="desc">待进化的Geek一枚</p>
+                    </div>
+                </div>
+            </div>
+        </li>
+        
+
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-home " href="/" >
+                    <i class="fa fa-home "></i>
+                    
+                    首页
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-archive " href="/archives" >
+                    <i class="fa fa-archive "></i>
+                    
+                    归档
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-category category-menu" href="javascript:;" data-activates="category-menu" >
+                    <i class="fa fa-bookmark "></i>
+                    
+                    分类
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-reading " href="/reading" >
+                    <i class="fa fa-book "></i>
+                    
+                    读书
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-about " href="/about" >
+                    <i class="fa fa-user "></i>
+                    
+                    关于
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-search modal-trigger " href="#search" >
+                    <i class="fa fa-search "></i>
+                    
+                    搜索
+                </a>
+            </li>
+        
+    </ul>
+
+    <ul class="side-nav indigo darken-1" id="category-menu">
+    
+
+            
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Algorithm/">
+                    Algorithm <span class="right">3 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/Algorithm/BubbleSort/">
+                    BubbleSort <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/Algorithm/策略/">
+                    策略 <span class="right">2 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Android/">
+                    Android <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Java/">
+                    Java <span class="right">26 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/Java/基础/">
+                    基础 <span class="right">10 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/Java/Swing/">
+                    Swing <span class="right">2 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/Java/Util基本类的使用/">
+                    Util基本类的使用 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/Java/Internationalization/">
+                    Internationalization <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/Java/数组/">
+                    数组 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/Java/socket/">
+                    socket <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/Java/XML/">
+                    XML <span class="right">2 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/Java/Class/">
+                    Class <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/Java/Security/">
+                    Security <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/Java/File/">
+                    File <span class="right">2 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/Java/泛型/">
+                    泛型 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/Java/jsp/">
+                    jsp <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/Java/线程/">
+                    线程 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/常用命令/">
+                    常用命令 <span class="right">3 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/框架/">
+                    框架 <span class="right">10 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/框架/Hibernate/">
+                    Hibernate <span class="right">3 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/框架/MyBatis/">
+                    MyBatis <span class="right">3 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/框架/Spring/">
+                    Spring <span class="right">2 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/框架/Mybatis/">
+                    Mybatis <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/框架/整合/">
+                    整合 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Tools/">
+                    Tools <span class="right">2 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/GitHub/">
+                    GitHub <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/GitHub/Linux/">
+                    Linux <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/MySQL/">
+                    MySQL <span class="right">2 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/MySQL/SQL/">
+                    SQL <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/MySQL/正则表达式/">
+                    正则表达式 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/jQuery/">
+                    jQuery <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/jQuery/事件/">
+                    事件 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/JavaScript/">
+                    JavaScript <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/Python/">
+                    Python <span class="right">3 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/Python/pydoc/">
+                    pydoc <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/Python/Basic/">
+                    Basic <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/Python/基础/">
+                    基础 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/json/">
+                    json <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/json/级联/">
+                    级联 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/HTML-CSS/">
+                    HTML-CSS <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/HTML-CSS/优化/">
+                    优化 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/计算机基本知识/">
+                    计算机基本知识 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/微信/">
+                    微信 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/微信/开发/">
+                    开发 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/开源软件/">
+                    开源软件 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/开源软件/Druid/">
+                    Druid <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/MySql/">
+                    MySql <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/MySql/8小时/">
+                    8小时 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+    </ul>
+</div>
+
+        </div>
+    </div>
+</nav>
+
+<div id="search" class="modal search-modal">
+    <div class="row">
+        <div class="input-field col s12">
+              <input id="search-input" type="text">
+              <label for="search-input">搜索</label>
+        </div>
+
+    </div>
+    <div id="search-result" class="search-result col s12">
+
+    </div>
+</div>
+
+
+    <main>
+        <div class="container main-container">
+    <nav class="page-nav hide-on-small-only">
+    <div class="nav-wrapper indigo">
+        <span class="breadcrumb">当前位置（分类目录）</span>
+        
+            
+    
+    
+    <a class="breadcrumb" href="/categories/MySQL/">MySQL</a><a class="breadcrumb" href="/categories/MySQL/SQL/">SQL</a>
+
+
+        
+
+        
+    </div>
+</nav>
+
+<article>
+    <div class="card">
+        <div class="card-content">
+            
+
+            <div class="article-title">
+                
+    
+        <h1>MySQL存储引擎的选择</h1>
+    
+
+
+            </div>
+            <time class="pink-link-context" datetime="2017-09-20T14:55:35.000Z"><a href="/2017/09/20/MySQL存储引擎的选择/">2017-09-20</a></time>
+
+            <span id="busuanzi_container_page_pv" class="read-times-container">
+    <i class="fa fa-eye"></i>
+    <span id="busuanzi_value_page_pv"></span>
+</span>
+
+            
+    <div class="tags-row">
+        
+            <a href="/tags/数据库/" class="chip pink lighten-1">数据库</a>
+        
+            <a href="/tags/MySQL/" class="chip pink lighten-1">MySQL</a>
+        
+    </div>
+
+
+            <div class="toc pink-link-context hide-on-med-and-down">
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#了解存储引擎"><span class="section table-of-contents-text"><a href="#&#x4E86;&#x89E3;&#x5B58;&#x50A8;&#x5F15;&#x64CE;" class="headerlink" title="&#x4E86;&#x89E3;&#x5B58;&#x50A8;&#x5F15;&#x64CE;"></a>&#x4E86;&#x89E3;&#x5B58;&#x50A8;&#x5F15;&#x64CE;</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#选择存储引擎"><span class="section table-of-contents-text"><a href="#&#x9009;&#x62E9;&#x5B58;&#x50A8;&#x5F15;&#x64CE;" class="headerlink" title="&#x9009;&#x62E9;&#x5B58;&#x50A8;&#x5F15;&#x64CE;"></a>&#x9009;&#x62E9;&#x5B58;&#x50A8;&#x5F15;&#x64CE;</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-4"><a class="section table-of-contents-link" href="#创建表的时候指定存储引擎"><span class="section table-of-contents-text"><a href="#&#x521B;&#x5EFA;&#x8868;&#x7684;&#x65F6;&#x5019;&#x6307;&#x5B9A;&#x5B58;&#x50A8;&#x5F15;&#x64CE;" class="headerlink" title="&#x521B;&#x5EFA;&#x8868;&#x7684;&#x65F6;&#x5019;&#x6307;&#x5B9A;&#x5B58;&#x50A8;&#x5F15;&#x64CE;"></a>&#x521B;&#x5EFA;&#x8868;&#x7684;&#x65F6;&#x5019;&#x6307;&#x5B9A;&#x5B58;&#x50A8;&#x5F15;&#x64CE;</span></a></li><li class="section table-of-contents-item section table-of-contents-level-4"><a class="section table-of-contents-link" href="#修改存储引擎"><span class="section table-of-contents-text"><a href="#&#x4FEE;&#x6539;&#x5B58;&#x50A8;&#x5F15;&#x64CE;" class="headerlink" title="&#x4FEE;&#x6539;&#x5B58;&#x50A8;&#x5F15;&#x64CE;"></a>&#x4FEE;&#x6539;&#x5B58;&#x50A8;&#x5F15;&#x64CE;</span></a></li></ol></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#各种存储引擎的特性"><span class="section table-of-contents-text"><a href="#&#x5404;&#x79CD;&#x5B58;&#x50A8;&#x5F15;&#x64CE;&#x7684;&#x7279;&#x6027;" class="headerlink" title="&#x5404;&#x79CD;&#x5B58;&#x50A8;&#x5F15;&#x64CE;&#x7684;&#x7279;&#x6027;"></a>&#x5404;&#x79CD;&#x5B58;&#x50A8;&#x5F15;&#x64CE;&#x7684;&#x7279;&#x6027;</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#MyISAM"><span class="section table-of-contents-text"><a href="#MyISAM" class="headerlink" title="MyISAM"></a>MyISAM</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#InnoDB"><span class="section table-of-contents-text"><a href="#InnoDB" class="headerlink" title="InnoDB"></a>InnoDB</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-4"><a class="section table-of-contents-link" href="#特点"><span class="section table-of-contents-text"><a href="#&#x7279;&#x70B9;" class="headerlink" title="&#x7279;&#x70B9;"></a>&#x7279;&#x70B9;</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#MEMORY"><span class="section table-of-contents-text"><a href="#MEMORY" class="headerlink" title="MEMORY"></a>MEMORY</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#MERGE"><span class="section table-of-contents-text"><a href="#MERGE" class="headerlink" title="MERGE"></a>MERGE</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#ToKuDB"><span class="section table-of-contents-text"><a href="#ToKuDB" class="headerlink" title="ToKuDB"></a>ToKuDB</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-4"><a class="section table-of-contents-link" href="#特性"><span class="section table-of-contents-text"><a href="#&#x7279;&#x6027;" class="headerlink" title="&#x7279;&#x6027;"></a>&#x7279;&#x6027;</span></a></li><li class="section table-of-contents-item section table-of-contents-level-4"><a class="section table-of-contents-link" href="#使用场景"><span class="section table-of-contents-text"><a href="#&#x4F7F;&#x7528;&#x573A;&#x666F;" class="headerlink" title="&#x4F7F;&#x7528;&#x573A;&#x666F;"></a>&#x4F7F;&#x7528;&#x573A;&#x666F;</span></a></li></ol></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#选择合适的存储引擎"><span class="section table-of-contents-text"><a href="#&#x9009;&#x62E9;&#x5408;&#x9002;&#x7684;&#x5B58;&#x50A8;&#x5F15;&#x64CE;" class="headerlink" title="&#x9009;&#x62E9;&#x5408;&#x9002;&#x7684;&#x5B58;&#x50A8;&#x5F15;&#x64CE;"></a>&#x9009;&#x62E9;&#x5408;&#x9002;&#x7684;&#x5B58;&#x50A8;&#x5F15;&#x64CE;</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#MyISAM-1"><span class="section table-of-contents-text"><a href="#MyISAM-1" class="headerlink" title="MyISAM"></a>MyISAM</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#InnoDB-1"><span class="section table-of-contents-text"><a href="#InnoDB-1" class="headerlink" title="InnoDB"></a>InnoDB</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#MEMORY-1"><span class="section table-of-contents-text"><a href="#MEMORY-1" class="headerlink" title="MEMORY"></a>MEMORY</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#MERGE-1"><span class="section table-of-contents-text"><a href="#MERGE-1" class="headerlink" title="MERGE"></a>MERGE</span></a></li></ol></li></ol>
+</div>
+
+
+            <div class="entry pink-link-context">
+                <h2 id="了解存储引擎"><a href="#了解存储引擎" class="headerlink" title="了解存储引擎"></a>了解存储引擎</h2><blockquote>
+<p>存储引擎其实就是数据在数据库中的存放方式，通过什么样的方式存储数据效率更高，对于应用的优化有着举足轻重的作用，尤其是对于我们这样海量数据的时代，能够高效的处理海量数据就已经很不易了！</p>
+</blockquote>
+<p>MySQL5.0 支持如下存储引擎：</p>
+<ol>
+<li>MyISAM</li>
+<li>InnoDB</li>
+<li>BDB</li>
+<li>MEMORY</li>
+<li>MERGE</li>
+<li>EXAMPLE</li>
+<li>NDB Cluster</li>
+<li>ARCHIVE</li>
+<li>CSV</li>
+<li>BLACKHOLE</li>
+<li>FEDERATED<blockquote>
+<p>如此多的存储引擎，却只有InnoDB和BDB提供事务安全表，其他存储引擎都是非事务安全表</p>
+</blockquote>
+</li>
+</ol>
+<h3 id="选择存储引擎"><a href="#选择存储引擎" class="headerlink" title="选择存储引擎"></a>选择存储引擎</h3><blockquote>
+<p>当我们在创建表的时候没有指定存储引擎，系统将会使用默认存储引擎，MySQL5.5(包含5.5)之前默认存储引擎为MyISAM,之后便改为了InnoDB,如果要修改存储引擎，可以在创建表的SQL语句中进行设置。</p>
+</blockquote>
+<p>查看当前数据库支持的存储引擎，可以使用如下命令<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SHOW</span> <span class="keyword">ENGINES</span> \G</span><br></pre></td></tr></table></figure></p>
+<p>或者<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SHOW</span> <span class="keyword">VARIABLES</span> <span class="keyword">LIKE</span> <span class="string">'have%'</span>;</span><br></pre></td></tr></table></figure></p>
+<p><img src="http://on3w7gc9m.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720170913144228.png" alt=""></p>
+<blockquote>
+<p>图片中显示 value 显示为 “DISABLED” 的记录表示支持该存储引擎，但是数据库启动的时候被禁用</p>
+</blockquote>
+<h4 id="创建表的时候指定存储引擎"><a href="#创建表的时候指定存储引擎" class="headerlink" title="创建表的时候指定存储引擎"></a>创建表的时候指定存储引擎</h4><blockquote>
+<p>创建表可以指定存储引擎，例如下面的SQL语句</p>
+</blockquote>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> ai (</span><br><span class="line">  i <span class="built_in">BIGINT</span>(<span class="number">20</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> AUTO_INCREMENT,</span><br><span class="line">  PRIMARY <span class="keyword">KEY</span>(i)</span><br><span class="line">) <span class="keyword">ENGINE</span> = MyISAM <span class="keyword">DEFAULT</span> <span class="keyword">CHARSET</span> = UTF8;</span><br></pre></td></tr></table></figure>
+<p><img src="http://on3w7gc9m.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720170913145307.png" alt=""></p>
+<h4 id="修改存储引擎"><a href="#修改存储引擎" class="headerlink" title="修改存储引擎"></a>修改存储引擎</h4><blockquote>
+<p>也可以使用ALTER TABLE 语句进行存储引擎的修改，将一个已经存在的表修改成其他存储引擎<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> ai <span class="keyword">ENGINE</span> = <span class="keyword">InnoDB</span>;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<a id="more"></a>
+<blockquote>
+<p>结果可以使用<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SHOW</span> <span class="keyword">CREATE</span> <span class="keyword">TABLE</span> ai \G</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p>进行查看</p>
+<hr>
+
+<h2 id="各种存储引擎的特性"><a href="#各种存储引擎的特性" class="headerlink" title="各种存储引擎的特性"></a>各种存储引擎的特性</h2><p><img src="http://on3w7gc9m.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720170920232002.jpg" alt=""></p>
+<h3 id="MyISAM"><a href="#MyISAM" class="headerlink" title="MyISAM"></a>MyISAM</h3><blockquote>
+<p>MyISAM作为MySQL 5.5 之前默认的存储引擎。不支持事务也不支持外键</p>
+</blockquote>
+<p>优势： 访问速度快，对事务完整性没有要求或者以SELECT, INSERT 为主的应用基本上可以使用该引擎来创建表</p>
+<blockquote>
+<p>每个MyISAM 在磁盘上存储成3个文件，其文件名和表名相同，但扩展名分别是：</p>
+<ol>
+<li>.frm(存储表定义)</li>
+<li>.MYD(MYData,存储数据)</li>
+<li>.MYI(MYIndex,存储索引)<br><strong> 数据文件和索引文件可以放置在不同目录，平均分布IO，获得更快的速度 </strong></li>
+</ol>
+</blockquote>
+<p>如果需要指定索引文件和数据文件路径，需要在创建表的时候通过DATA DIRECTORY 和 INDEX DIRECTORY 语句指定，也就是说不同MyISAM 表的索引文件和数据文件可以放置到不同路径下。文件路径需要绝对路径，并且需要访问权限</p>
+<h3 id="InnoDB"><a href="#InnoDB" class="headerlink" title="InnoDB"></a>InnoDB</h3><blockquote>
+<p>InooDB 存储引擎提供了具有提交，回滚和崩溃恢复能力的事务安全，但是对比MyISAM的存储引擎，InnoDB写的处理效率差一些，并且会占用更多的磁盘空间已保留数据和索引</p>
+</blockquote>
+<h4 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h4><ol>
+<li><p>自动增长列</p>
+<blockquote>
+<p>InnoDB表的增长列可以手工插入，但是插入的值如果是空或者0，则实际插入的值将是自动增长后的值</p>
+</blockquote>
+</li>
+<li><p>外键约束</p>
+</li>
+<li><p>存储方式</p>
+</li>
+</ol>
+<blockquote>
+<ol>
+<li>使用共享空间存储，这种方式创建的表结构保存在.frm文件中，数据和索引保存在innodb_data_home_dir和innodb_data_file_path定义的表空间，可以是多个文件</li>
+<li>使用多表空间存储，这种方式创建的表结构依然保存在.frm文件中，但是每个表的数据和索引单独保存在.ibd中。如果是个分区表，则每个分区对应单独的.ibd文件，文件名是“表名 + 分区名”,可以在创建分区的时候指定每个分区数据文件的位置，以此来将表的IO均匀分布在多个磁盘上。</li>
+</ol>
+</blockquote>
+<h3 id="MEMORY"><a href="#MEMORY" class="headerlink" title="MEMORY"></a>MEMORY</h3><blockquote>
+<p>MEMPRY存储引擎使用存在于内存中的内容来创建表，每个MEMORY表只实际对应一个磁盘文件，格式是.frm。MEMORY类型的表访问也非常快，因为它的数据位于内存中，并且默认使用HASH索引，但是一旦服务关闭，表中的数据将会丢失。</p>
+</blockquote>
+<p>创建索引的时候可以指定是HASH索引还是BTREE索引<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">INDEX</span> index_name <span class="keyword">USING</span> <span class="keyword">HASH</span> <span class="keyword">ON</span> table_name(column_name);</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>在启动MySQL服务的时候，使用–inint-file选项，把INSERT INTO … SELECT 或 LOAD DATA INFILE 这样的语句放入到该文件中，就可以在服务启动的时候从持久稳固的数据源装载表</p>
+</blockquote>
+<p>当我们对MEMORY存储引擎的表操纵完成后，应该释放内存，执行DELETE FROM 或 TRUNCATE TABLE 或者 DROP TABLE;</p>
+<p>每个MEMORY 表中可以放置的数据量大小，受到max_head_table_size系统变量的约束，这个系统变量初始值为16MB，可以根据需要加大。此外，在定义MEMORY表的时候，可以通过MAX_ROWS子句指定表的最大行数。</p>
+<p>MEMORY 类型的存储引擎主要用于内容变化不太频繁，或者作为统计操作的中间结果表，便于高效的对中间结果进行分析并得到最终的统计结果。对存储引擎为MEMORY的表进行更新操作要谨慎，因为数据并没有实际写入到磁盘中，所以如果由于异常或者重启等引起的将会导致数据丢失。</p>
+<h3 id="MERGE"><a href="#MERGE" class="headerlink" title="MERGE"></a>MERGE</h3><blockquote>
+<p>MERGE 存储引擎是一组MyISAM表的组合，这些MyISAM表必须结构完全相同，MERGE表本身并没有数据，对MERGE类型的表进行查询，更新和删除操作，实际上是对内部MyISAM表进行的。对于MERGE类型表的插入操作，是通过INSERT_METHOD子句定义插入的表，可以有3个不同的值，使用FIRST或LAST值使得插入操作被相应地作用在第一或者最后一个表上，不定义这个子句或者定义为NO，表示不能对这个MERGE表执行插入操作。<br>可以对MERGE表进行DROP操作，仅仅只是删除MERGE，并不会对表的结构有太大影响<br>MERGE表在磁盘上保留两个文件，文件名以表的名字开始，一个.frm文件存储表定义，另一个.MYG文件包含组合表信息，包含MERGE表由哪些表组成，插入新的数据时的依据。可以通过修改.MRG文件来修改MERGE表，但是修改后要通过FLUSH TABLES刷新。</p>
+</blockquote>
+<p>MERGE表和分区表的区别：MERGE表并不能智能地将记录写到对应的表中，而分区表则可以。</p>
+<h3 id="ToKuDB"><a href="#ToKuDB" class="headerlink" title="ToKuDB"></a>ToKuDB</h3><blockquote>
+<p>ToKuDB是第三方存储引擎，并不是MySQL自带的存储引擎，除此之外，还有列式存储引擎Infobright,高写性能高压缩ToKuDB(也就是这里所讲到的)</p>
+</blockquote>
+<p>一个高性能，支持事务处理的MySQL 和 MariaDB 存储引擎，具有高扩展性，高压缩率，高效的写入性能，支持大多数在线DDL操作</p>
+<h4 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h4><ol>
+<li>使用Fractal 树保证高效的插入性能</li>
+<li>优秀的压缩性，比InnoDB 高近10倍</li>
+<li>Hot Schema Changes 特性支持在线创建索引和添加，删除属性列等DDL操作</li>
+<li>使用Bulk Loader达到快速加载大量数据</li>
+<li>提供了主从延迟消除技术</li>
+<li>支持ACID 和 MVCC</li>
+</ol>
+<h4 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h4><ol>
+<li>日志数据，因为日志插入频繁，且存量大</li>
+<li>历史数据，通常不会有写操作，可以利用ToKuDB的高压缩特性进行存储</li>
+<li>在线DDL较频繁的场景，可以使用ToKuDB可以大大增加系统可用性</li>
+</ol>
+<hr>
+
+<h2 id="选择合适的存储引擎"><a href="#选择合适的存储引擎" class="headerlink" title="选择合适的存储引擎"></a>选择合适的存储引擎</h2><h3 id="MyISAM-1"><a href="#MyISAM-1" class="headerlink" title="MyISAM"></a>MyISAM</h3><blockquote>
+<p>MySQL 5.5 之前的默认存储引擎，如果应用以读操作和插入操作为主，只有很少的更新和删除操作，并且对事务的完整性，并发性要求不是很高，选择MyISAM引擎将会非常合适，MyISAM是在web,数据仓储，和其他应用环境下最常使用的存储引擎之一</p>
+<h3 id="InnoDB-1"><a href="#InnoDB-1" class="headerlink" title="InnoDB"></a>InnoDB</h3><p>用于事务处理应用程序，支持外键，如果应用对事务的完整性有比较高的要求，在并发条件下要求数据的一致性，数据操作除了插入和查询以外，还包括很多的更新、删除操作，那么InnoDB存储引擎应该是比较合适的选择。InnoDB存储引擎除了有效地降低由于删除和更新导致的锁定，还可以确保事务的完整提交和回滚，对于类似计费系统或者财务系统等对数据准确性要求较高的系统，InnoD都是较好的选择</p>
+<h3 id="MEMORY-1"><a href="#MEMORY-1" class="headerlink" title="MEMORY"></a>MEMORY</h3><p>将所有数据保存在RAM中，在需要快速定位记录和其他类似数据的环境下，可以提供极快的访问，MEMORY的缺陷是对表的大小有限制，太大的表无法缓存在内存中，其次是要确保表的数据可以恢复，数据库异常终止后表中数据可以恢复。MEMORY表通常用于更新不太频繁的小表，用于快速访问得到结果</p>
+</blockquote>
+<h3 id="MERGE-1"><a href="#MERGE-1" class="headerlink" title="MERGE"></a>MERGE</h3><p><strong>用于将一系列等同的MyISAM表以逻辑方式组合在一起，并作为一个对象引用它们，MERGE表的优点在于可以突破对单个MyISAM表大小的限制,并且通过将不同的表分布在多个磁盘上</strong>，可以有效的改善MERGE表的访问效率，这对于数据仓储等VLDB环境非常适合！</p>
+
+                
+<p class="pink-link-context">
+    <a href="/2017/10/01/彻底理解int类型的取值范围/" rel="next" title="彻底理解int类型的取值范围">
+    上一篇：彻底理解int类型的取值范围
+  </a>
+</p>
+
+
+
+<p class="pink-link-context">
+    <a href="/2017/07/19/Java全球化与格式化/" rel="next" title="Java全球化与格式化">
+    下一篇：Java全球化与格式化
+  </a>
+</p>
+
+
+            </div>
+			
+        </div>
+    </div>
+</article>
+
+
+
+
+    <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href,
+        sourceId: "",
+        productKey: "128846229ecc425f8450fc6fdc0151c8",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
+
+
+
+</div>
+
+        <div class="fixed-action-btn float-sitemap">
+    <a class="btn-floating btn-large pink">
+      <i class="fa fa-caret-square-o-up"></i>
+    </a>
+    <ul>
+      <li><a class="btn-return-top btn-floating waves-effect green" title="回到顶部"><i class="fa fa-arrow-circle-o-up"></i></a></li>
+      <li><a class="btn-floating waves-effect button-collapse yellow darken-1"  data-activates="main-menu" title="菜单"><i class="fa fa-navicon"></i></a></li>
+    </ul>
+  </div>
+
+    </main>
+    <footer class="page-footer indigo darken-1">
+    
+    <div class="footer-container container">
+        <div class="row">
+            
+            <div class="social-group col m4 s12">
+                <h5 class="white-text">社交</h5>
+                
+                    <a class="social-link" href="https://www.linkedin.com/in/%E6%99%93%E6%96%87-%E5%90%B4-79057a121/" target="_blank">
+                        <i class="fa fa-2x fa-linkedin"></i>
+                    </a>
+                
+                    <a class="social-link" href="http://weibo.com/Msingwen0222/home?wvr=5" target="_blank">
+                        <i class="fa fa-2x fa-weibo"></i>
+                    </a>
+                
+                    <a class="social-link" href="https://github.com/sivanWu0222" target="_blank">
+                        <i class="fa fa-2x fa-github"></i>
+                    </a>
+                
+                    <a class="social-link" href="http://wpa.qq.com/msgrd?v=3&amp;uin=1666762170&amp;site=qq&amp;menu=yes" target="_blank">
+                        <i class="fa fa-2x fa-qq"></i>
+                    </a>
+                
+                    <a class="social-link" href="https://zh-cn.facebook.com/people/SiVan-Wu/100014408918389" target="_blank">
+                        <i class="fa fa-2x fa-facebook"></i>
+                    </a>
+                
+                    <a class="social-link" href="https://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&amp;email=xfTz8-Py8-f08vWFtLTrpqqo" target="_blank">
+                        <i class="fa fa-2x fa-envelope"></i>
+                    </a>
+                
+                    <a class="social-link" href="https://twitter.com/SiVan_Wu" target="_blank">
+                        <i class="fa fa-2x fa-twitter"></i>
+                    </a>
+                
+                    <a class="social-link" href="/atom.xml" target="_blank">
+                        <i class="fa fa-2x fa-rss"></i>
+                    </a>
+                
+
+                
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+    </script>
+    <div class="site-visitors-container white-text">
+        <span>
+            <i class="fa fa-user"></i>
+            <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+        </span>
+        <span>&nbsp;|&nbsp;</span>
+        <span>
+            <i class="fa fa-eye"></i>
+            <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+        </span>
+    </div>
+
+
+            </div>
+            
+
+            
+            <div class="col m8 s12">
+                <h5 class="white-text">友情链接</h5>
+
+                
+                    <a class="social-link" href="http://www.ai-start.com/" target="_blank">AI翻译笔记</a>
+                
+                    <a class="social-link" href="http://www.grace527.com" target="_blank">吴其顺</a>
+                
+                    <a class="social-link" href="http://www.xiaqianan.top/" target="_blank">刘霈</a>
+                
+                    <a class="social-link" href="http://www.rxdonny.com" target="_blank">唐仁鑫</a>
+                
+                    <a class="social-link" href="https://www.byvoid.com/" target="_blank">byvoid</a>
+                
+                    <a class="social-link" href="http://blog.csdn.net/Bryan__" target="_blank">Bryan__</a>
+                
+                    <a class="social-link" href="http://blog.csdn.net/a819825294" target="_blank">雪伦</a>
+                
+                    <a class="social-link" href="http://blog.csdn.net/v_JULY_v" target="_blank">JULY大神</a>
+                
+                    <a class="social-link" href="http://miccall.tech/" target="_blank">王金铮</a>
+                
+                    <a class="social-link" href="http://wxz.name" target="_blank">汪小祯</a>
+                
+                    <a class="social-link" href="http://www.zengheng.top" target="_blank">曾恒</a>
+                
+                    <a class="social-link" href="http://gunpowder.net.cn" target="_blank">曹巍</a>
+                
+                    <a class="social-link" href="http://hikerell.cn/" target="_blank">hiker</a>
+                
+            </div>
+            
+        </div>
+    </div>
+    
+
+    <div class="footer-copyright pink-link-context">
+        <div class="container">
+            <a href="http://www.sivan0222.cn">Copyright ©  2016 - 2017 sivan All rights reserved.</a>
+            <p class="right" style="margin-top: 0;"> <a href="http://www.miitbeian.gov.cn/publish/query/indexFirst.action">湘ICP备16017041号</a></p>
+        </div>
+    </div>
+</footer>
+
+
+    <noscript>
+    <div class="noscript">
+        <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
+    </div>
+</noscript>
+<div class="noscript">
+    <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
+</div>
+
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/materialize.min.js"></script>
+
+<script>
+    (function($) {
+        $(document).ready(function() {
+            // 隐藏禁用javascript（针对微信内置浏览器）的提示
+            $('.noscript').hide();
+
+            // 图片缩放效果
+            var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image').not('.qrcode');
+
+            // 给图片加上点击放大效果（materialbox插件）
+            $imgs.addClass('materialboxed').each(function(i, el) {
+                $(this).attr('data-caption', $(this).attr('alt') || ' ');
+            }).materialbox();
+
+            // 优化表格的显示
+            $('table').each(function() {
+                var $table = $(this);
+                // 除去多行代码的情况
+                if ($table.find('pre').length == 0) {
+                    $table.addClass('responsive-table striped bordered');
+                }
+            });
+
+            // 首页幻灯片
+            $('.slider').slider({indicators: true, full_width: true, interval: 8000});
+
+            $(".button-collapse").sideNav();
+            $(".category-menu").sideNav();
+
+            // 针对gallery post
+            $('.carousel').carousel({full_width: true});
+            $('.carousel-control.prev').click(function() {
+                $('.carousel').carousel('prev');
+            });
+            $('.carousel-control.next').click(function() {
+                $('.carousel').carousel('next');
+            });
+
+            // 文章目录
+            $('article').not('.simple-article').find('h1').add('h2').add('h3').add('h4').add('h5').add('h6').scrollSpy();
+
+            // 目录随屏幕滚动（防止目录过长越过footer）
+            var $toc = $('.toc');
+            var scrollTargetTop = 0;
+            $(window).scroll(function() {
+                var $activeLink = $toc.find('a.active.section');
+                if ($(window).scrollTop() < 100) {
+                    scrollTargetTop = 0;
+                } else {
+                    if ($activeLink[0]) {
+                        scrollTargetTop = $activeLink.offset().top - $toc.offset().top;
+                    }
+                }
+                $toc.css('top', '-' + scrollTargetTop + 'px');
+            });
+
+            // 修正文章目录的left-border颜色
+            var color = $('.table-of-contents-text').css('color');
+            $('.table-of-contents-link').css('border-left-color', color);
+
+            // 针对移动端做的优化：FAB按钮点击一下收回
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                $('.fixed-action-btn').addClass('click-to-toggle');
+            }
+            // 回到顶部
+            $('.btn-return-top').click(function() {
+                $('body, html').animate({
+                    scrollTop: 0
+                }, 500);
+            });
+
+            // 重置读书页面的Tab标签页的颜色
+            $('li.tab a').hover(function() {
+                $(this).toggleClass('text-lighten-4');
+            });
+            $('.indicator').addClass('pink lighten-2');
+
+            
+            // 添加new标签
+            $('.menu-reading, .menu-about').append('<span class="new badge pink"></span>');
+            
+
+            // 搜索功能
+            $('.modal-trigger').leanModal({
+                // 打开搜索框时自动聚焦
+                ready: function() {
+                    if ($('#search').is(":visible")) {
+                        $('#search-input').focus();
+                    }
+                }
+            });
+            var searchXml = "";
+            if (searchXml.length == 0) {
+             	searchXml = "search.xml";
+            }
+            var searchPath = "/" + searchXml;
+            initSearch(searchPath, 'search-input', 'search-result');
+        });
+
+        // 初始化搜索与匹配函数
+        var initSearch = function(path, search_id, content_id) {
+            'use strict';
+            $.ajax({
+                url: path,
+                dataType: "xml",
+                success: function(xmlResponse) {
+                    // get the contents from search data
+                    var datas = $("entry", xmlResponse).map(function() {
+                        return {
+                            title: $("title", this).text(),
+                            content: $("content", this).text(),
+                            url: $("url", this).text()
+                        };
+                    }).get();
+                    var $input = document.getElementById(search_id);
+                    var $resultContent = document.getElementById(content_id);
+                    $input.addEventListener('input', function() {
+                        var str = '<ul class=\"search-result-list\">';
+                        var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                        $resultContent.innerHTML = "";
+                        if (this.value.trim().length <= 0) {
+                            return;
+                        }
+                        // perform local searching
+                        datas.forEach(function(data) {
+                            var isMatch = true;
+                            var content_index = [];
+                            var data_title = data.title.trim().toLowerCase();
+                            var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                            var data_url = data.url;
+                            var index_title = -1;
+                            var index_content = -1;
+                            var first_occur = -1;
+                            // only match artiles with not empty titles and contents
+                            if (data_title != '' && data_content != '') {
+                                keywords.forEach(function(keyword, i) {
+                                    index_title = data_title.indexOf(keyword);
+                                    index_content = data_content.indexOf(keyword);
+                                    if (index_title < 0 && index_content < 0) {
+                                        isMatch = false;
+                                    } else {
+                                        if (index_content < 0) {
+                                            index_content = 0;
+                                        }
+                                        if (i == 0) {
+                                            first_occur = index_content;
+                                        }
+                                    }
+                                });
+                            }
+                            // show search results
+                            if (isMatch) {
+                                keywords.forEach(function(keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    data_title = data_title.replace(regS, "<span class=\"search-keyword pink lighten-2\">" + keyword + "</span>");
+                                });
+
+                                str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                                var content = data.content.trim().replace(/<[^>]+>/g, "");
+                                if (first_occur >= 0) {
+                                    // cut out 100 characters
+                                    var start = first_occur - 20;
+                                    var end = first_occur + 80;
+                                    if (start < 0) {
+                                        start = 0;
+                                    }
+                                    if (start == 0) {
+                                        end = 100;
+                                    }
+                                    if (end > content.length) {
+                                        end = content.length;
+                                    }
+                                    var match_content = content.substring(start, end);
+                                    // highlight all keywords
+                                    keywords.forEach(function(keyword) {
+                                        var regS = new RegExp(keyword, "gi");
+                                        match_content = match_content.replace(regS, "<span class=\"search-keyword pink lighten-2\">" + keyword + "</span>");
+                                    });
+
+                                    str += "<p class=\"search-result\">..." + match_content + "...</p>"
+                                }
+                                str += "</li>";
+                            }
+                        });
+                        str += "</ul>";
+                        $resultContent.innerHTML = str;
+                    });
+                }
+            });
+        }
+    })(jQuery);
+</script>
+
+
+<script src="/js/prettify.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("pre").addClass("prettyprint");
+        prettyPrint();
+    });
+</script>
+
+
+
+
+<script type="text/javascript" src="http://tajs.qq.com/stats?sId=63632788" charset="UTF-8"></script>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script type="text/javascript" async
+  src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+
+</body>
+</html>
